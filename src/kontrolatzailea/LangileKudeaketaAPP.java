@@ -1,4 +1,4 @@
-package kontroladorea;
+package kontrolatzailea;
 import eredua.*;
 
 public class LangileKudeaketaAPP {
