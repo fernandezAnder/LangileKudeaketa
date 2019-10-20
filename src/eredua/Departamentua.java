@@ -54,7 +54,7 @@ public class Departamentua {
 	}
 
 	//tostring
-	@Override
+	//@Override
 	public String toString() {
 		return "Departamentua [depart_kod=" + depart_kod + ", izena=" + izena + ", kokapena=" + kokapena
 				+ ", eraikuntza_zbk=" + eraikuntza_zbk + ", irakasle_kop=" + irakasle_kop + "]";
