@@ -32,7 +32,7 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		
 		txtSaberBorrar = new JTextField();
 		txtSaberBorrar.setText("SABER BORRAR");
-		txtSaberBorrar.setBounds(96, 56, 86, 20);
+		txtSaberBorrar.setBounds(10, 11, 86, 20);
 		getContentPane().add(txtSaberBorrar); 
 		txtSaberBorrar.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
