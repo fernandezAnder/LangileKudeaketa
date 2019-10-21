@@ -13,17 +13,14 @@ import kontrolatzailea.MetodoakLeihoAldaketa;
 
 public class Leiho1OngiEtorria extends JFrame {
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Ongietorria ematen duen panela sortu
-	 * @author talde3
-	 */
+	private JButton btnDepartamentuKudeaketa, btnEnplegatuKudeaketa, btnTxostenakSortu;
 	public Leiho1OngiEtorria() {
 	
 		//panelaren propietateak
 //		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\Argazkiak\\logoa.png")); 
 		getContentPane().setLayout(null);
 		
-		JButton btnDepartamentuKudeaketa = new JButton("DEPARTAMENTU KUDEAKETA");
+		btnDepartamentuKudeaketa = new JButton("DEPARTAMENTU KUDEAKETA");
 		btnDepartamentuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.bigarrenLeihoa(); 
@@ -33,7 +30,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnDepartamentuKudeaketa.setBounds(160, 108, 250, 39);
 		getContentPane().add(btnDepartamentuKudeaketa);
 		
-		JButton btnEnplegatuKudeaketa = new JButton("ENPLEGATU KUDEAKETA");
+		btnEnplegatuKudeaketa = new JButton("ENPLEGATU KUDEAKETA");
 		btnEnplegatuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.hirugarrenLeihoa();
@@ -43,7 +40,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnEnplegatuKudeaketa.setBounds(160, 168, 250, 39);
 		getContentPane().add(btnEnplegatuKudeaketa);
 		
-		JButton btnTxostenakSortu = new JButton("TXOSTENAK SORTU");
+		btnTxostenakSortu = new JButton("TXOSTENAK SORTU");
 		btnTxostenakSortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.laugarrenLeihoa();
