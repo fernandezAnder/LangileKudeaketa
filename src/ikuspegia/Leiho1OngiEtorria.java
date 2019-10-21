@@ -26,7 +26,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		JButton btnDepartamentuKudeaketa = new JButton("DEPARTAMENTU KUDEAKETA");
 		btnDepartamentuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MetodoakLeihoAldaketa.bigarrenLeihoa();
+				MetodoakLeihoAldaketa.bigarrenLeihoa(); 
 				dispose();
 			}
 		});
