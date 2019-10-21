@@ -24,14 +24,30 @@ public class Leiho1OngiEtorria extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JButton btnDepartamentuKudeaketa = new JButton("DEPARTAMENTU KUDEAKETA");
+		btnDepartamentuKudeaketa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MetodoakLeihoAldaketa.bigarrenLeihoa();
+			}
+		});
 		btnDepartamentuKudeaketa.setBounds(160, 108, 250, 39);
 		getContentPane().add(btnDepartamentuKudeaketa);
 		
 		JButton btnEnplegatuKudeaketa = new JButton("ENPLEGATU KUDEAKETA");
+		btnEnplegatuKudeaketa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MetodoakLeihoAldaketa.hirugarrenLeihoa();
+			}
+		});
 		btnEnplegatuKudeaketa.setBounds(160, 168, 250, 39);
 		getContentPane().add(btnEnplegatuKudeaketa);
 		
 		JButton btnTxostenakSortu = new JButton("TXOSTENAK SORTU");
+		btnTxostenakSortu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MetodoakLeihoAldaketa.laugarrenLeihoa();
+
+			}
+		});
 		btnTxostenakSortu.setBounds(160, 247, 250, 39);
 		getContentPane().add(btnTxostenakSortu);
 		this.setBounds(350,50,600,600);
