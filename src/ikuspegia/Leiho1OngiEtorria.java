@@ -27,6 +27,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnDepartamentuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.bigarrenLeihoa();
+				dispose();
 			}
 		});
 		btnDepartamentuKudeaketa.setBounds(160, 108, 250, 39);
@@ -36,6 +37,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnEnplegatuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.hirugarrenLeihoa();
+				dispose();
 			}
 		});
 		btnEnplegatuKudeaketa.setBounds(160, 168, 250, 39);
@@ -45,7 +47,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnTxostenakSortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.laugarrenLeihoa();
-
+				dispose();
 			}
 		});
 		btnTxostenakSortu.setBounds(160, 247, 250, 39);
