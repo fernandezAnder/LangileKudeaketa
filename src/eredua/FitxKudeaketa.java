@@ -27,6 +27,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 public class FitxKudeaketa {
@@ -60,7 +61,7 @@ public class FitxKudeaketa {
 					izena = katea[1].replace("\"", "");
 					abizenak = katea[2].replace("\"", "");
 					ardura = katea[3].replace("\"", "");
-					ardura = katea[4].replace("\"", "");
+					arduraduna = katea[4].replace("\"", "");
 					departamentuak_depart_kod = katea[5].replace("\"", "");
 					 
 					Langilea langilea = new Langilea (nan, izena, abizenak, ardura, arduraduna, departamentuak_depart_kod);		
@@ -107,35 +108,39 @@ public class FitxKudeaketa {
 	}
 
 	// .xml an dauden lerroak arraylist batean sartu
-		public static ArrayList<Departamentua> irakurriOharrak() {
+		public static ArrayList<Langilea> irakurriOharrak() {
 			// bariableak
-			ArrayList<Departamentua> lista_oharrak = new ArrayList<Departamentua>();
+			ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
 			File fitxeroa = new File("src/Oharrak.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;
 			Document doc = null;
 
-			String data = "", ordua = "", nori = "", nork = "", titulua = "", edukia = "";
-
+			String nan="";
+			String izena="";
+			String abizenak="";
+			String ardura="";
+			String arduraduna="";
+			String departamentuak_depart_kod="";
 			try {
 				dBuilder = dbFactory.newDocumentBuilder();
 				try {
 					doc = dBuilder.parse(fitxeroa);
 					doc.getDocumentElement().normalize();
-					NodeList lista = doc.getElementsByTagName("row");
+					NodeList lista = doc.getElementsByTagName("langilea");
 
 					for (int temp = 0; temp < lista.getLength(); temp++) {
 						Node nNode = lista.item(temp);
 						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 							Element eElement = (Element) nNode;
-							data = eElement.getElementsByTagName("data").item(0).getTextContent();
-							ordua = eElement.getElementsByTagName("ordua").item(0).getTextContent();
-							nori = eElement.getElementsByTagName("nori").item(0).getTextContent();
-							nork = eElement.getElementsByTagName("nork").item(0).getTextContent();
-							titulua = eElement.getElementsByTagName("titulua").item(0).getTextContent();
-							edukia = eElement.getElementsByTagName("edukia").item(0).getTextContent();
-							//Oharra oharra = new Oharra(data, ordua, nori, nork, titulua, edukia);
-							//lista_oharrak.add(oharra);
+							nan = eElement.getElementsByTagName("nan").item(0).getTextContent();
+							izena = eElement.getElementsByTagName("izena").item(0).getTextContent();
+							abizenak = eElement.getElementsByTagName("abizenak").item(0).getTextContent();
+							ardura = eElement.getElementsByTagName("ardura").item(0).getTextContent();
+							arduraduna = eElement.getElementsByTagName("arduraduna").item(0).getTextContent();
+							departamentuak_depart_kod = eElement.getElementsByTagName("departamentuak_depart_kod").item(0).getTextContent();
+							Langilea oharra = new Langilea(nan, izena, abizenak, ardura, arduraduna, departamentuak_depart_kod);
+							lista_langilea.add(oharra);
 						}
 					}
 				} catch (SAXException e) {
@@ -147,17 +152,17 @@ public class FitxKudeaketa {
 				e.printStackTrace();
 			}
 			System.out.println();
-			return lista_oharrak;
+			return lista_langilea;
 		}
 
 	// .xml aren amaieran idazten du.
-		public static int idatziOharrak(Departamentua oharra) {
+		public static int idatziOharrak(Langilea langilea) {
 			int idatzita = 0;
 
-			ArrayList<Departamentua> lista_oharrak = new ArrayList<Departamentua>();
+			ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
 
-			lista_oharrak = irakurriOharrak();
-			lista_oharrak.add(oharra);
+			lista_langilea = irakurriOharrak();
+			lista_langilea.add(langilea);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = null;
@@ -174,39 +179,35 @@ public class FitxKudeaketa {
 			Element raiz = ficheroXML.getDocumentElement();
 
 			try {
-				for (int i = 0; i < lista_oharrak.size(); i++) {
-					Element row = ficheroXML.createElement("row");
+				for (int i = 0; i < lista_langilea.size(); i++) {
+					Element row = ficheroXML.createElement("langilea");
 
-		/*			Element data = ficheroXML.createElement("data");
-					Text datatext = ficheroXML.createTextNode(lista_oharrak.get(i).getData() + "\n");
-					data.appendChild(datatext);
-					row.appendChild(data);
+					Element nan = ficheroXML.createElement("nan");
+					Text nantext = ficheroXML.createTextNode(lista_langilea.get(i).getNan() + "\n");
+					nan.appendChild(nantext);
+					row.appendChild(nan);
 
-					Element ordua = ficheroXML.createElement("ordua");
-					Text orduatext = ficheroXML.createTextNode(lista_oharrak.get(i).getOrdua() + "\n");
-					ordua.appendChild(orduatext);
-					row.appendChild(ordua);
+					Element abizenak = ficheroXML.createElement("abizenak");
+					Text abizenaktext = ficheroXML.createTextNode(lista_langilea.get(i).getAbizenak() + "\n");
+					abizenak.appendChild(abizenaktext);
+					row.appendChild(abizenak);
 
-					Element nori = ficheroXML.createElement("nori");
-					Text noritext = ficheroXML.createTextNode(lista_oharrak.get(i).getNori() + "\n");
-					nori.appendChild(noritext);
-					row.appendChild(nori);
+					Element ardura = ficheroXML.createElement("ardura");
+					Text arduratext = ficheroXML.createTextNode(lista_langilea.get(i).getArdura() + "\n");
+					ardura.appendChild(arduratext);
+					row.appendChild(ardura);
 
-					Element nork = ficheroXML.createElement("nork");
-					Text norktext = ficheroXML.createTextNode(lista_oharrak.get(i).getNork() + "\n");
-					nork.appendChild(norktext);
-					row.appendChild(nork);
+					Element arduraduna = ficheroXML.createElement("arduraduna");
+					Text arduradunatext = ficheroXML.createTextNode(lista_langilea.get(i).getArduraduna() + "\n");
+					arduraduna.appendChild(arduradunatext);
+					row.appendChild(arduraduna);
 
-					Element titulua = ficheroXML.createElement("titulua");
-					Text tituluatext = ficheroXML.createTextNode(lista_oharrak.get(i).getTitulua() + "\n");
-					titulua.appendChild(tituluatext);
-					row.appendChild(titulua);
+					Element departamentuak_depart_kod = ficheroXML.createElement("departamentuak_depart_kod");
+					Text departamentuak_depart_kodtext = ficheroXML.createTextNode(lista_langilea.get(i).getDepartamentu_kod() + "\n");
+					departamentuak_depart_kod.appendChild(departamentuak_depart_kodtext);
+					row.appendChild(departamentuak_depart_kod);
 
-					Element edukia = ficheroXML.createElement("edukia");
-					Text edukiatext = ficheroXML.createTextNode(lista_oharrak.get(i).getEdukia() + "\n");
-					edukia.appendChild(edukiatext);
-					row.appendChild(edukia);
-*/
+					
 					raiz.appendChild(row);
 				}
 
