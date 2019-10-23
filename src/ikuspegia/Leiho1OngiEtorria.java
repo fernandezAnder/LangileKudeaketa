@@ -1,13 +1,11 @@
 package ikuspegia;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
- 
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import kontrolatzailea.MetodoakLeihoAldaketa;
 

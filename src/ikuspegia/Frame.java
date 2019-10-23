@@ -1,7 +1,9 @@
 package ikuspegia;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+
+import javax.swing.JFrame;
 
 public class Frame extends JFrame {
 

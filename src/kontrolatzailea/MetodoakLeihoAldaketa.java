@@ -1,18 +1,27 @@
 package kontrolatzailea;
 
-import java.io.*;
-import java.math.BigInteger;
-import java.security.*;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import eredua.*;
 import ikuspegia.*;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
 
 public class MetodoakLeihoAldaketa {
-
+	public static ArrayList<Langilea> lista_langileak; //bariable globala
+	
 	public static void lehenengoLeihoa() {
 		Leiho1OngiEtorria Leiho1 = new Leiho1OngiEtorria();
 		Leiho1.setVisible(true);
+		
+		/**
+		 * CSV FITXATEGITIK IRAKURTZEN DUEN FROGA EGITEKO 
+		 */
+		lista_langileak = eredua.FitxKudeaketa.irakurriLangileakCSV();
+		for (int i =0; i < lista_langileak.size();i++) {
+			System.out.println(lista_langileak.get(i));
+		}
 	}
+		
 
 	public static void bigarrenLeihoa() {
 		Leiho2DeptKudeaketa Leiho2 = new Leiho2DeptKudeaketa();

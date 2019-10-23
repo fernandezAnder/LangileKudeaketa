@@ -1,7 +1,6 @@
 package kontrolatzailea;
 
-import kontrolatzailea.MetodoakLeihoAldaketa;
-import eredua.*;
+import eredua.Konexioa;
 
 public class LangileKudeaketaAPP {
 

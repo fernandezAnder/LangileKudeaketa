@@ -1,10 +1,9 @@
 package eredua;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;;
+import java.sql.ResultSet;
+import java.util.ArrayList;;
 
 public class DbKontsultak {
 
