@@ -33,33 +33,42 @@ import org.xml.sax.SAXException;
 public class FitxKudeaketa {
 
 	// .csv an dauden lerroak arraylist batean sartu
-	public static ArrayList<Departamentua> irakurriFitxCSV() {
+	public static ArrayList<Langilea> irakurriLangileakCSV() {
 		// bariableak
-		ArrayList<Departamentua> lista_oharrak = new ArrayList<Departamentua>();
+		ArrayList<Langilea> lista_langileak = new ArrayList<Langilea>();
 		FileReader fitxeroa = null;
 		BufferedReader br = null;
 		try { //aurkitzen duen ala ez
-			fitxeroa = new FileReader("src/Oharrak.csv");
+			fitxeroa = new FileReader("src/fitxategiak/langileak.csv");
 			br = new BufferedReader(fitxeroa);
-			// Oharren bariableak
-			String data = "", ordua = "", nori = "", nork = "", titulua = "", edukia = "";
-			String[] cadena;
+			// Langilearen bariableak
+			
+			String katea[];
+			String nan="";
+			String izena="";
+			String abizenak="";
+			String ardura="";
+			String arduraduna="";
+			String departamentuak_depart_kod="";
 
 			try {
+				
 				String linea = br.readLine();
 				while ((linea = br.readLine()) != null) {
 					// lerro zuriak ez irakurtzeko
-					cadena = linea.split(",");
-					data = cadena[0].replace("\"", "");
-					ordua = cadena[1].replace("\"", "");
-					nori = cadena[2].replace("\"", "");
-					nork = cadena[3].replace("\"", "");
-					titulua = cadena[4].replace("\"", "");
-					edukia = cadena[5].replace("\"", "");
-					//Departamentua oharra = new Departamentua(data, ordua, nori, nork, titulua);
-				//	lista_oharrak.add(oharra);
+					katea = linea.split(",");
+					nan = katea[0].replace("\"", "");
+					izena = katea[1].replace("\"", "");
+					abizenak = katea[2].replace("\"", "");
+					ardura = katea[3].replace("\"", "");
+					ardura = katea[4].replace("\"", "");
+					departamentuak_depart_kod = katea[5].replace("\"", "");
+					 
+					Langilea langilea = new Langilea (nan, izena, abizenak, ardura, arduraduna, departamentuak_depart_kod);		
+					lista_langileak.add(langilea);
 				}
 				br.close();
+				fitxeroa.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -68,22 +77,29 @@ public class FitxKudeaketa {
 		}
 		
 		
-		return lista_oharrak;
+		return lista_langileak;
 	}
 
 	// .csv aren amaieran idazten du.
-	public static int idatziFitxCSV(Departamentua oharra) {
+	public static int idatziLangileakCSV( ArrayList<Langilea> lista_langileak ) {
 		int idatzita = 0;
-		File d = new File("src/Oharrak.csv");
+		File d = new File("src/fitxategiak/langileak.csv");
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
 			fw = new FileWriter(d, true);
 			bw = new BufferedWriter(fw);
 			bw.newLine();
-			/*bw.write(oharra.getData() + ",\"" + oharra.getOrdua() + "\",\"" + oharra.getNori() + "\",\"" + oharra.getNork() + "\",\""
-					+ oharra.getTitulua() + "\",\"" + oharra.getEdukia()+ "\"");*/
-			bw.flush(); // csv-an idatzitakoa gortzeko
+			for (int i =0;i<lista_langileak.size();i++) {
+				bw.write(
+					lista_langileak.get(i).getNan() + ",\""
+					+ lista_langileak.get(i).getIzena() + "\",\""
+					+ lista_langileak.get(i).getAbizenak() + "\",\""
+					+ lista_langileak.get(i).getArdura() + "\",\""
+					+ lista_langileak.get(i).getArduraduna() + "\",\""
+					+ lista_langileak.get(i).getDepartamentu_kod()+ "\"");
+					bw.flush(); // csv-an idatzitakoa gortzeko
+					}
 			idatzita = 1;
 		} catch (IOException e) {
 			//e.printStackTrace();
