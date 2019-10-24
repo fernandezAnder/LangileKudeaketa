@@ -68,6 +68,7 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		lblabizenak.setForeground(Color.BLACK);
 		lblabizenak.setBounds(268, 139, 124, 21);
 		getContentPane().add(lblabizenak);
+		 
 		
 		txtAbizena = new JTextField();
 		txtAbizena.setForeground(Color.BLACK);
