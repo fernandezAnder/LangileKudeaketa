@@ -20,6 +20,7 @@ public class MetodoakLeihoAldaketa {
 		for (int i =0; i < lista_langileak.size();i++) {
 			System.out.println(lista_langileak.get(i));
 		}
+		eredua.DbKontsultak.langileTaulaIdatzi(lista_langileak);
 	}
 		
 
