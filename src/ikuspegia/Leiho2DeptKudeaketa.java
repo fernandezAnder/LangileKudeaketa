@@ -3,13 +3,24 @@ package ikuspegia;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import kontrolatzailea.MetodoakLeihoAldaketa;
+
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Leiho2DeptKudeaketa extends JFrame {
 
 		private static final long serialVersionUID = 1L;
+
 		/**
-		 * Ongietorria ematen duen panela sortu
-		 * @author talde3
+		 * @author talde6
 		 */
 		public Leiho2DeptKudeaketa() {
 		
@@ -21,6 +32,7 @@ public class Leiho2DeptKudeaketa extends JFrame {
 			this.setResizable(false); // neurketak ez aldatzeko
 			this.setSize(new Dimension(600, 600));
 			
+
 		}		
 	}
 
