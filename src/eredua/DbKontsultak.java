@@ -40,7 +40,7 @@ public static void langileTaulaIdatzi(ArrayList<Langilea> lista_langileak) {
 	
 	try {
 		 s =  konexioa.prepareStatement(
-				"INSERT INTO `langileak` (`NAN`, `IZENA`, `ABIZENAK`, `ARDURA`, `ARDURADUNA`,`DEPARTAMENTUAK_DEPART_DOK`)"
+				"INSERT INTO `LANGILEAK` (`NAN`, `IZENA`, `ABIZENAK`, `ARDURA`, `ARDURADUNA`,`DEPARTAMENTUAK_DEPART_KOD`)"
 						+ " VALUES(?, ?, ?, ?, ?, ?)");
 		 for (int i=0;i<lista_langileak.size();i++){
 			 
