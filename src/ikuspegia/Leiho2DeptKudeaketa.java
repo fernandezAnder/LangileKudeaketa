@@ -21,6 +21,7 @@ public class Leiho2DeptKudeaketa extends JFrame {
 		private JTextField txtDeptKod;
 		private JLabel lblDepartKod, lblIzena, lblKokapena , lblEraikuntzaZbk, lblIrakKop;
 		private JTextField txtIzena, txtKokapena, txtEraikuntzaZbk, txtIrakKop;
+		private JButton btnKargatuFitxategia;
 		/**
 		 * @author talde6
 		 */
@@ -38,57 +39,90 @@ public class Leiho2DeptKudeaketa extends JFrame {
 			lblDepartKod = new JLabel("Departamentu kodea:");
 			lblDepartKod.setFont(new Font("Dialog", Font.BOLD, 16));
 			lblDepartKod.setForeground(Color.BLACK);
-			lblDepartKod.setBounds(35, 37, 201, 21);
+			lblDepartKod.setBounds(20, 109, 173, 21);
 			getContentPane().add(lblDepartKod);
 
 			txtDeptKod = new JTextField();
 			txtDeptKod.setColumns(10);
-			txtDeptKod.setBounds(82, 59, 124, 27);
+			txtDeptKod.setBounds(197, 109, 124, 27);
 			getContentPane().add(txtDeptKod);
 
 			lblIzena = new JLabel("Izena:");
 			lblIzena.setForeground(Color.BLACK);
 			lblIzena.setFont(new Font("Dialog", Font.BOLD, 16));
-			lblIzena.setBounds(35, 118, 63, 21);
+			lblIzena.setBounds(140, 167, 47, 21);
 			getContentPane().add(lblIzena);
 			
 			txtIzena = new JTextField();
 			txtIzena.setColumns(10);
-			txtIzena.setBounds(82, 140, 124, 27);
+			txtIzena.setBounds(197, 167, 124, 27);
 			getContentPane().add(txtIzena);
 			
 			lblKokapena = new JLabel("Kokapena:");
 			lblKokapena.setForeground(Color.BLACK);
 			lblKokapena.setFont(new Font("Dialog", Font.BOLD, 16));
-			lblKokapena.setBounds(35, 197, 112, 21);
+			lblKokapena.setBounds(110, 253, 89, 21);
 			getContentPane().add(lblKokapena);
 			
 			txtKokapena = new JTextField();
 			txtKokapena.setColumns(10);
-			txtKokapena.setBounds(82, 219, 124, 27);
+			txtKokapena.setBounds(209, 253, 124, 27);
 			getContentPane().add(txtKokapena);
 
 			lblEraikuntzaZbk = new JLabel("Eraikuntza zenbakia:");
 			lblEraikuntzaZbk.setForeground(Color.BLACK);
 			lblEraikuntzaZbk.setFont(new Font("Dialog", Font.BOLD, 16));
-			lblEraikuntzaZbk.setBounds(35, 277, 201, 21);
+			lblEraikuntzaZbk.setBounds(35, 333, 164, 21);
 			getContentPane().add(lblEraikuntzaZbk);
 			
 			txtEraikuntzaZbk = new JTextField();
 			txtEraikuntzaZbk.setColumns(10);
-			txtEraikuntzaZbk.setBounds(82, 299, 124, 27);
+			txtEraikuntzaZbk.setBounds(209, 333, 124, 27);
 			getContentPane().add(txtEraikuntzaZbk);
 			
 			lblIrakKop = new JLabel("Irakasle kopurua:");
 			lblIrakKop.setForeground(Color.BLACK);
 			lblIrakKop.setFont(new Font("Dialog", Font.BOLD, 16));
-			lblIrakKop.setBounds(35, 364, 201, 21);
+			lblIrakKop.setBounds(62, 420, 139, 21);
 			getContentPane().add(lblIrakKop);
 			
 			txtIrakKop = new JTextField();
 			txtIrakKop.setColumns(10);
-			txtIrakKop.setBounds(82, 386, 124, 27);
+			txtIrakKop.setBounds(209, 420, 124, 27);
 			getContentPane().add(txtIrakKop);
+			
+			JButton btnIrten = new JButton("Irten");
+			btnIrten.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MetodoakLeihoAldaketa.lehenengoLeihoa();
+				}
+			});
+			btnIrten.setBounds(424, 513, 89, 23);
+			getContentPane().add(btnIrten);
+			
+			JLabel lblDepartamentuKudeaketa = new JLabel("Departamentu Kudeaketa");
+			lblDepartamentuKudeaketa.setFont(new Font("Tahoma", Font.BOLD, 22));
+			lblDepartamentuKudeaketa.setBounds(140, 25, 297, 43);
+			getContentPane().add(lblDepartamentuKudeaketa);
+			
+			JLabel lblDepartamentuDatuak = new JLabel("Departamentu datuak -------------------------------------------------------------------------------------------");
+			lblDepartamentuDatuak.setBounds(10, 79, 535, 14);
+			getContentPane().add(lblDepartamentuDatuak);
+			
+			JLabel lblKokapena_1 = new JLabel("Kokapena ----------------------------------------------------------------------------------------------------------");
+			lblKokapena_1.setBounds(10, 226, 535, 14);
+			getContentPane().add(lblKokapena_1);
+			
+			btnKargatuFitxategia = new JButton("Kargatu fitxategia");
+			btnKargatuFitxategia.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MetodoakLeihoAldaketa.bostgarrenLeihoa();
+					dispose();
+					
+				}
+			});
+			btnKargatuFitxategia.setBounds(62, 499, 125, 23);
+			getContentPane().add(btnKargatuFitxategia);
 
 		}		
 	}

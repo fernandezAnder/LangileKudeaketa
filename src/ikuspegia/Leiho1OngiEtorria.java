@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import kontrolatzailea.MetodoakLeihoAldaketa;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 public class Leiho1OngiEtorria extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -27,6 +28,7 @@ public class Leiho1OngiEtorria extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.bigarrenLeihoa(); 
 
+				
 				dispose();
 			}
 		});
@@ -56,10 +58,24 @@ public class Leiho1OngiEtorria extends JFrame {
 		});
 		btnTxostenakSortu.setBounds(147, 321, 306, 67);
 		getContentPane().add(btnTxostenakSortu);
+		
+		JLabel lblMenuNagusia = new JLabel("MENU NAGUSIA");
+		lblMenuNagusia.setFont(new Font("Tahoma", Font.BOLD, 27));
+		lblMenuNagusia.setBounds(190, 35, 224, 49);
+		getContentPane().add(lblMenuNagusia);
+		
+		JButton btnIrten = new JButton("Irten");
+		btnIrten.setBounds(447, 510, 89, 23);
+		getContentPane().add(btnIrten);
 		this.setBounds(350,50,600,600);
 		this.setTitle("6.taldearen langileen kudeaketa");
 		this.setResizable(false); // neurketak ez aldatzeko
 		this.setSize(new Dimension(600, 600));
+		btnIrten.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		
 	}		
 }

@@ -210,6 +210,18 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		getContentPane().add(txtSaberBorrar);
 		txtSaberBorrar.setColumns(10);
 		
+		JButton btnKargatuFitxategia = new JButton("Kargatu fitxategia");
+		btnKargatuFitxategia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MetodoakLeihoAldaketa.bostgarrenLeihoa();
+				dispose();
+			}
+		});
+		btnKargatuFitxategia.setBounds(41, 517, 124, 23);
+		getContentPane().add(btnKargatuFitxategia);
+		
+		
+		
 		
 	}
 }
