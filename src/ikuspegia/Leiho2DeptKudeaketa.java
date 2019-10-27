@@ -33,10 +33,7 @@ public class Leiho2DeptKudeaketa extends JFrame {
 			this.setTitle("6.taldearen langileen kudeaketa");
 			this.setResizable(false); // neurketak ez aldatzeko
 			this.setSize(new Dimension(600, 600));
-			
-			//
 
-			// DEPART_KOD 	IZENA 	KOKAPENA 	ERAIKUNTZA_ZBK 	IRAKASLE_KOP
 			
 			lblDepartKod = new JLabel("Departamentu kodea:");
 			lblDepartKod.setFont(new Font("Dialog", Font.BOLD, 16));

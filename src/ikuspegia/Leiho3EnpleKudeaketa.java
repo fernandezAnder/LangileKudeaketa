@@ -51,16 +51,18 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		getContentPane().add(txtNan);
 		txtNan.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
-				letra = e.getKeyChar(); 
+				char letraNan = e.getKeyChar();
 				String cadena = e.toString();
+				// bakarrik karakter bat (V,v,M,m) sartzekoa
+				if (txtSaberBorrar.getText().length() > 5
+						|| letraNan != 'E' && letraNan != 'e' || cadena.matches("[^ @/\\=]"))
+					e.consume(); // ez du godetzen
+				
 				// bakarrik karakter bat (V,v,M,m) sartzekoa
 				/*if (txtNan.getText().length() > 9 || cadena.matches("[@/\\=]")) {
 					e.consume(); // ez du godetzen
 					
 				}*/
-				if (txtNan.getText().length() > 8
-						|| letra == 'E' && letra == '@' || cadena.matches("[^@/\\=]"))
-					e.consume(); // ez du godetzen
 			}
 		});
 		txtNan.setColumns(10);
