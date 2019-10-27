@@ -53,16 +53,9 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 			public void keyTyped(KeyEvent e) {
 				char letraNan = e.getKeyChar();
 				String cadena = letraNan + "";
-				// bakarrik karakter bat (V,v,M,m) sartzekoa
-				if (txtNan.getText().length() < 8 || cadena.matches("[a-z]"))
-					System.out.println(cadena);
-					//e.consume(); // ez du godetzen
-				
-				// bakarrik karakter bat (V,v,M,m) sartzekoa
-				/*if (txtNan.getText().length() > 9 || cadena.matches("[@/\\=]")) {
+				if (txtNan.getText().length() > 8 || !cadena.matches("[0-9a-zA-Z]"))
 					e.consume(); // ez du godetzen
-					
-				}*/
+				
 			}
 		});
 		txtNan.setColumns(10);
@@ -142,8 +135,9 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		btnGorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//if (txt_nan, txtIzena, txtAbizena, txtArduraduna;
-				if (!txtNan.getText().equals("") && !txtIzena.getText().equals("") && !txtAbizena.getText().equals("") && !txtArduraduna.getText().equals(""))
-					System.out.println(); // llamar metodo subir datos
+
+				if (txtNan.getText().matches("\\d{8}+[A-Z]{1}") && !txtIzena.getText().equals("") && !txtAbizena.getText().equals("") && !txtArduraduna.getText().equals(""))
+					System.out.println(txtNan.getText().matches("\\d{8}+[A-Z]{1}")); // llamar metodo subir datos
 			}
 		});
 		btnGorde.setFont(new Font("Dialog", Font.BOLD, 16));
