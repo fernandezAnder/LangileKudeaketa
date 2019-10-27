@@ -24,7 +24,7 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtSaberBorrar;
 	private char letra;
-	private JTextField txt_nan, txtIzena, txtAbizena, txtArduraduna;
+	private JTextField txtNan, txtIzena, txtAbizena, txtArduraduna;
 	private JLabel lblArdura, lblArduraduna, lblNan, lblIzena, lblabizenak, lblDepartamentuKodea, lblDerrigorrezNan,
 			lblDerrigorrezIzena, lblDerrigorrezAbizenak, lblDerrigorrezDeptKod, lblDerrigorrezArdura;;
 	private JComboBox jcbDeptKod, jcbArdura;
@@ -46,10 +46,24 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		this.setResizable(false); // neurketak ez aldatzeko
 		this.setSize(new Dimension(600, 600));
 
-		txt_nan = new JTextField();
-		txt_nan.setBounds(41, 74, 124, 27);
-		getContentPane().add(txt_nan);
-		txt_nan.setColumns(10);
+		txtNan = new JTextField();
+		txtNan.setBounds(41, 74, 124, 27);
+		getContentPane().add(txtNan);
+		txtNan.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				letra = e.getKeyChar(); 
+				String cadena = e.toString();
+				// bakarrik karakter bat (V,v,M,m) sartzekoa
+				/*if (txtNan.getText().length() > 9 || cadena.matches("[@/\\=]")) {
+					e.consume(); // ez du godetzen
+					
+				}*/
+				if (txtNan.getText().length() > 8
+						|| letra == 'E' && letra == '@' || cadena.matches("[^@/\\=]"))
+					e.consume(); // ez du godetzen
+			}
+		});
+		txtNan.setColumns(10);
 
 		lblNan = new JLabel("NAN");
 		lblNan.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -123,6 +137,13 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		getContentPane().add(lblDepartamentuKodea);
 
 		btnGorde = new JButton("Gorde");
+		btnGorde.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//if (txt_nan, txtIzena, txtAbizena, txtArduraduna;
+				if (!txtNan.getText().equals("") && !txtIzena.getText().equals("") && !txtAbizena.getText().equals("") && !txtArduraduna.getText().equals(""))
+					System.out.println(); // llamar metodo subir datos
+			}
+		});
 		btnGorde.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnGorde.setForeground(Color.BLACK);
 		btnGorde.setBounds(252, 509, 114, 33);
@@ -140,22 +161,6 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		btnEzeztatu.setBounds(416, 509, 114, 33);
 		getContentPane().add(btnEzeztatu);
 
-		txtSaberBorrar = new JTextField();
-		txtSaberBorrar.setText("SABER BORRAR");
-		txtSaberBorrar.setBounds(10, 11, 86, 20);
-		getContentPane().add(txtSaberBorrar);
-		txtSaberBorrar.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				letra = e.getKeyChar();
-				// bakarrik karakter bat (V,v,M,m) sartzekoa
-				if (txtSaberBorrar.getText().length() > 5
-						|| letra != 'E' && letra != 'e' && letra != 'G' && letra != 'g')
-					e.consume(); // ez du godetzen
-			}
-		});
-
-		getContentPane().add(txtSaberBorrar);
-		txtSaberBorrar.setColumns(10);
 
 		lblDerrigorrezNan = new JLabel("*");
 		lblDerrigorrezNan.setForeground(Color.RED);
@@ -192,5 +197,23 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		}
 		getContentPane().add(jcbArdura);
 
+		txtSaberBorrar = new JTextField();
+		txtSaberBorrar.setText("SABER BORRAR");
+		txtSaberBorrar.setBounds(10, 11, 86, 20);
+		getContentPane().add(txtSaberBorrar);
+		txtSaberBorrar.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				letra = e.getKeyChar();
+				// bakarrik karakter bat (V,v,M,m) sartzekoa
+				if (txtSaberBorrar.getText().length() > 5
+						|| letra != 'E' && letra != 'e' && letra != 'G' && letra != 'g')
+					e.consume(); // ez du godetzen
+			}
+		});
+
+		getContentPane().add(txtSaberBorrar);
+		txtSaberBorrar.setColumns(10);
+		
+		
 	}
 }
