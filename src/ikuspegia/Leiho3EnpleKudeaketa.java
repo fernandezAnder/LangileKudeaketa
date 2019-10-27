@@ -52,11 +52,11 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		txtNan.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char letraNan = e.getKeyChar();
-				String cadena = e.toString();
+				String cadena = letraNan + "";
 				// bakarrik karakter bat (V,v,M,m) sartzekoa
-				if (txtSaberBorrar.getText().length() > 5
-						|| letraNan != 'E' && letraNan != 'e' || cadena.matches("[^ @/\\=]"))
-					e.consume(); // ez du godetzen
+				if (txtNan.getText().length() < 8 || cadena.matches("[a-z]"))
+					System.out.println(cadena);
+					//e.consume(); // ez du godetzen
 				
 				// bakarrik karakter bat (V,v,M,m) sartzekoa
 				/*if (txtNan.getText().length() > 9 || cadena.matches("[@/\\=]")) {
