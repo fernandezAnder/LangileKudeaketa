@@ -19,45 +19,55 @@ import javax.swing.JTextField;
 public class Leiho5FitxKargatu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
-	public Leiho5FitxKargatu() {
+	private JLabel lblMenuNagusia, lblMota, lblRuta;
+	private JComboBox comboBox; 
+	private JButton btnIrten, btnKargatu, button;
 	
+	public Leiho5FitxKargatu() {
 		//panelaren propietateak
-//		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\Argazkiak\\logoa.png")); 
 		getContentPane().setLayout(null);
+		this.setBounds(350,50,600,600);
+		this.setTitle("6.taldearen langileen kudeaketa");
+		this.setResizable(false); // neurketak ez aldatzeko
+		this.setSize(new Dimension(600, 600));
 		
-		JLabel lblMenuNagusia = new JLabel("Fitxategia Kargatu\r\n");
+		
+		lblMenuNagusia = new JLabel("Fitxategia Kargatu\r\n");
 		lblMenuNagusia.setFont(new Font("Tahoma", Font.BOLD, 27));
-		lblMenuNagusia.setBounds(30, 31, 251, 49);
+		lblMenuNagusia.setBounds(188, 22, 251, 49);
 		getContentPane().add(lblMenuNagusia);
 		
-		JButton btnIrten = new JButton("Irten");
+		btnIrten = new JButton("Irten");
 		btnIrten.setBounds(447, 510, 89, 23);
 		getContentPane().add(btnIrten);
 		
-		JLabel lblMota = new JLabel("Mota: ");
-		lblMota.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMota.setBounds(38, 154, 55, 23);
+		lblMota = new JLabel("Mota: ");
+		lblMota.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblMota.setBounds(35, 127, 55, 23);
 		getContentPane().add(lblMota);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(103, 157, 28, 20);
+		comboBox = new JComboBox();
+		comboBox.setFont(new Font("Dialog", Font.BOLD, 18));
+		comboBox.setBounds(100, 130, 98, 20);
 		getContentPane().add(comboBox);
 		
-		JLabel lblRuta = new JLabel("Ruta: ");
-		lblRuta.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblRuta.setBounds(38, 207, 55, 23);
+		lblRuta = new JLabel("Ruta: ");
+		lblRuta.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblRuta.setBounds(35, 180, 55, 23);
 		getContentPane().add(lblRuta);
 		
 		textField = new JTextField();
-		textField.setBounds(101, 210, 86, 20);
+		textField.setFont(new Font("Dialog", Font.BOLD, 18));
+		textField.setBounds(98, 183, 407, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JButton btnKargatu = new JButton("Kargatu");
+		btnKargatu = new JButton("Kargatu");
 		btnKargatu.setBounds(294, 510, 89, 23);
 		getContentPane().add(btnKargatu);
 		
-		JButton button = new JButton("...");
+		button = new JButton("...");
+		button.setFont(new Font("Dialog", Font.BOLD, 18));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jf = new JFileChooser();
@@ -68,12 +78,10 @@ public class Leiho5FitxKargatu extends JFrame {
 				}
 			}
 		});
-		button.setBounds(192, 209, 28, 23);
+		button.setBounds(515, 182, 28, 23);
 		getContentPane().add(button);
-		this.setBounds(350,50,600,600);
-		this.setTitle("6.taldearen langileen kudeaketa");
-		this.setResizable(false); // neurketak ez aldatzeko
-		this.setSize(new Dimension(600, 600));
+		
+		
 		btnIrten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
