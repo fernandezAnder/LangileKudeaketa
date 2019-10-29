@@ -43,6 +43,10 @@ public class MetodoakLeihoAldaketa {
 		Leiho5.setVisible(true);
 		
 	}
+	public static void frogaLeihoa() {
+		Leiho2DeptKudeaketa_JTABLE froga = new Leiho2DeptKudeaketa_JTABLE();
+		
+	}
 
 	// Leiho6-ko metodoak
 

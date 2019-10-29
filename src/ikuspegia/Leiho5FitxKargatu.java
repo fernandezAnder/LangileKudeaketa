@@ -23,7 +23,7 @@ public class Leiho5FitxKargatu extends JFrame {
 	private JLabel lblMenuNagusia, lblMota, lblRuta;
 	private JComboBox comboBox; 
 	private JButton btnIrten, btnKargatu, button;
-	
+	private File fitxategia;
 	public Leiho5FitxKargatu() {
 		//panelaren propietateak
 		getContentPane().setLayout(null);
@@ -110,7 +110,7 @@ public class Leiho5FitxKargatu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jf = new JFileChooser();
 				jf.showOpenDialog(button);
-				File fitxategia = jf.getSelectedFile();
+				fitxategia = jf.getSelectedFile();
 				if (fitxategia != null) {
 					textField.setText(fitxategia.getAbsolutePath());
 				}
