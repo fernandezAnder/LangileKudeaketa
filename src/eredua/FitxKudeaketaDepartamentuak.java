@@ -275,7 +275,7 @@ public class FitxKudeaketaDepartamentuak {
 		System.out.println();
 		return lista_departamentuak;
 	}
-/*
+
 	// .xml aren amaieran idazten du.
 	public static int idatziOharrak(Departamentua departamentua, String helbidea) {
 		int idatzita = 0;
@@ -300,38 +300,33 @@ public class FitxKudeaketaDepartamentuak {
 		Element raiz = ficheroXML.getDocumentElement();
 
 		try {
-			for (int i = 0; i < lista_langilea.size(); i++) {
-				Element row = ficheroXML.createElement("row");
-
-				Element nan = ficheroXML.createElement("nan");
-				Text nanText = ficheroXML.createTextNode(lista_langilea.get(i).getNan() + "\n");
-				nan.appendChild(nanText);
-				row.appendChild(nan);
+			for (int i = 0; i < lista_departamentuak.size(); i++) {
+				Element row = ficheroXML.createElement("departamentua");				
+				
+				Element depart_kod = ficheroXML.createElement("depart_kod");
+				Text depart_kodText = ficheroXML.createTextNode(lista_departamentuak.get(i).getDepart_kod() + "\n");
+				depart_kod.appendChild(depart_kodText);
+				row.appendChild(depart_kod);
 
 				Element izena = ficheroXML.createElement("izena");
-				Text izenaText = ficheroXML.createTextNode(lista_langilea.get(i).getIzena() + "\n");
+				Text izenaText = ficheroXML.createTextNode(lista_departamentuak.get(i).getIzena() + "\n");
 				izena.appendChild(izenaText);
 				row.appendChild(izena);
 
-				Element abizenak = ficheroXML.createElement("abizenak");
-				Text abizenakText = ficheroXML.createTextNode(lista_langilea.get(i).getAbizenak() + "\n");
-				abizenak.appendChild(abizenakText);
-				row.appendChild(abizenak);
+				Element kokapena = ficheroXML.createElement("kokapena");
+				Text kokapenaText = ficheroXML.createTextNode(lista_departamentuak.get(i).getKokapena() + "\n");
+				kokapena.appendChild(kokapenaText);
+				row.appendChild(kokapena);
 
-				Element ardura = ficheroXML.createElement("ardura");
-				Text arduraText = ficheroXML.createTextNode(lista_langilea.get(i).getArdura() + "\n");
-				ardura.appendChild(arduraText);
-				row.appendChild(ardura);
+				Element eraikuntza_zbk = ficheroXML.createElement("eraikuntza_zbk");
+				Text eraikuntza_zbkText = ficheroXML.createTextNode(lista_departamentuak.get(i).getEraikuntza_zbk() + "\n");
+				eraikuntza_zbk.appendChild(eraikuntza_zbkText);
+				row.appendChild(eraikuntza_zbk);
 
-				Element arduraduna = ficheroXML.createElement("arduraduna");
-				Text arduradunaText = ficheroXML.createTextNode(lista_langilea.get(i).getArduraduna() + "\n");
-				arduraduna.appendChild(arduradunaText);
-				row.appendChild(arduraduna);
-
-				Element departamentu_kod = ficheroXML.createElement("departamentu_kod");
-				Text departamentu_kodText = ficheroXML.createTextNode(lista_langilea.get(i).getDepartamentu_kod() + "\n");
-				departamentu_kod.appendChild(departamentu_kodText);
-				row.appendChild(departamentu_kod);
+				Element irakasle_kop = ficheroXML.createElement("irakasle_kop");
+				Text irakasle_kopText = ficheroXML.createTextNode(lista_departamentuak.get(i).getIrakasle_kop() + "\n");
+				irakasle_kop.appendChild(irakasle_kopText);
+				row.appendChild(irakasle_kop);
 
 				raiz.appendChild(row);
 			}
@@ -359,6 +354,5 @@ public class FitxKudeaketaDepartamentuak {
 		return idatzita;
 	}
 
-	*/
 	
 }
