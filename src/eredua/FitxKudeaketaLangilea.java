@@ -302,7 +302,7 @@ public class FitxKudeaketaLangilea {
 
 		try {
 			for (int i = 0; i < lista_langilea.size(); i++) {
-				Element row = ficheroXML.createElement("row");
+				Element row = ficheroXML.createElement("langilea");
 
 				Element nan = ficheroXML.createElement("nan");
 				Text nanText = ficheroXML.createTextNode(lista_langilea.get(i).getNan() + "\n");
