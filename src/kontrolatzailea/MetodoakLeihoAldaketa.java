@@ -19,7 +19,7 @@ public class MetodoakLeihoAldaketa {
 		lista_langileak = eredua.FitxKudeaketaLangilea.irakurriLangileakCSV();
 		MetodoakLeihoAldaketa.frogaLeihoa();
 		
-		DbKontsultak.langileTaulaIdatzi(lista_langileak);
+		
 	}
 		
 

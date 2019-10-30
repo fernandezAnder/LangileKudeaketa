@@ -17,6 +17,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -25,12 +26,17 @@ import javax.swing.JScrollPane;
 public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 
 		private static final long serialVersionUID = 1L;
+		protected static final Vector constante = null;
 		private JButton btnKargatuFitxategia;
 		private JTable table;
-		JButton btnIrten = new JButton("Irten");
-		JLabel lblDepartamentuKudeaketa = new JLabel("Departamentu Kudeaketa");
-		JScrollPane scrollPane = new JScrollPane();
-		
+		private JButton btnIrten = new JButton("Irten");
+		private JLabel lblDepartamentuKudeaketa = new JLabel("Langile Kudeaketa");
+		private JScrollPane scrollPane = new JScrollPane();
+		private DefaultTableModel t1= new DefaultTableModel();
+		private String[]columnas = new String[6];
+		private final JButton btnInsert = new JButton("Insert");
+		private final JButton btnUpdate = new JButton("Update");
+		private final JButton btnDelete = new JButton("Delete");
 		/**
 		 * @author talde6
 		 */
@@ -38,8 +44,8 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 			this.setBounds(350,50,600,600);
 			this.setTitle("6.taldearen langileen kudeaketa");
 			this.setResizable(false); // neurketak ez aldatzeko
-			this.setSize(new Dimension(600, 600));
-			btnIrten.setBounds(424, 513, 89, 23);
+			this.setSize(new Dimension(802, 600));
+			btnIrten.setBounds(685, 499, 89, 23);
 			
 			
 			btnIrten.addActionListener(new ActionListener() {
@@ -52,7 +58,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 			scrollPane.setBorder(null);
 			
 			
-			scrollPane.setBounds(62, 126, 483, 257);
+			scrollPane.setBounds(37, 126, 695, 257);
 			getContentPane().add(scrollPane);
 			
 			table = new JTable();
@@ -62,7 +68,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 			scrollPane.setViewportView(table);
 			
 			
-			lblDepartamentuKudeaketa.setBounds(140, 25, 297, 43);
+			lblDepartamentuKudeaketa.setBounds(312, 31, 210, 43);
 			lblDepartamentuKudeaketa.setFont(new Font("Tahoma", Font.BOLD, 22));
 			getContentPane().add(lblDepartamentuKudeaketa);
 			
@@ -76,14 +82,83 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 				}
 			});
 			getContentPane().add(btnKargatuFitxategia);
+			
+			JButton button = new JButton("+");
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					t1.addRow(constante);
+				}
+			});
+			button.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			button.setBounds(742, 128, 44, 23);
+			getContentPane().add(button);
+			btnInsert.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Langilea langile= new Langilea(
+							
+					t1.getValueAt(table.getSelectedRow(), 0).toString(),
+					t1.getValueAt(table.getSelectedRow(), 1).toString(),
+					t1.getValueAt(table.getSelectedRow(), 2).toString(),
+					t1.getValueAt(table.getSelectedRow(), 3).toString(),
+					t1.getValueAt(table.getSelectedRow(), 4).toString(),
+					t1.getValueAt(table.getSelectedRow(), 5).toString()
+				);
+					//Esta leyendo directamente del modelo en vez del kontrolador. PENDIENTE DE CORREGIR
+					eredua.DbKontsultak.langileTaulaIdatzi(langile);
+				}
+			});
+			btnInsert.setBounds(113, 409, 89, 23);
+			
+			getContentPane().add(btnInsert);
+			btnUpdate.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Langilea langile= new Langilea(
+							
+							t1.getValueAt(table.getSelectedRow(), 0).toString(),
+							t1.getValueAt(table.getSelectedRow(), 1).toString(),
+							t1.getValueAt(table.getSelectedRow(), 2).toString(),
+							t1.getValueAt(table.getSelectedRow(), 3).toString(),
+							t1.getValueAt(table.getSelectedRow(), 4).toString(),
+							t1.getValueAt(table.getSelectedRow(), 5).toString()
+						);
+							System.out.println(langile);
+				}
+			});
+			btnUpdate.setBounds(352, 409, 89, 23);
+			
+			getContentPane().add(btnUpdate);
+			btnDelete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Langilea langile= new Langilea(
+							
+							t1.getValueAt(table.getSelectedRow(), 0).toString(),
+							t1.getValueAt(table.getSelectedRow(), 1).toString(),
+							t1.getValueAt(table.getSelectedRow(), 2).toString(),
+							t1.getValueAt(table.getSelectedRow(), 3).toString(),
+							t1.getValueAt(table.getSelectedRow(), 4).toString(),
+							t1.getValueAt(table.getSelectedRow(), 5).toString()
+						);
+							System.out.println(langile);
+				}
+			});
+			btnDelete.setBounds(574, 409, 89, 23);
+			
+			getContentPane().add(btnDelete);
+			
+			JButton btnReload = new JButton("Reload");
+			btnReload.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//Se esta llamando directamente del paquete vista al modelo. PENDIENTE DE CORREGIR
+					MetodoakLeihoAldaketa.lista_langileak = eredua.DbKontsultak.langileTaulaIrakurri();
+					taulaBete(columnas);
+				}
+			});
+			btnReload.setBounds(685, 86, 75, 23);
+			getContentPane().add(btnReload);
 
 		}
 		public void taulaFormatua() {
-			String[]columnas = new String[6];
 			
-			DefaultTableModel t1= new DefaultTableModel(){
-				public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
-			};
 
 			table.setModel(t1);
 			t1.addColumn("NAN");
@@ -91,8 +166,11 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 			t1.addColumn("ABIZENAK");
 			t1.addColumn("ARDURA");
 			t1.addColumn("ARDURADUNA");
-			t1.addColumn("DEPARTAMENTUAK_DEPART_KOD");
+			t1.addColumn("DEPARTAMENTUA");
 			
+			taulaBete(columnas);
+		}
+		private void taulaBete(String[] columnas) {
 			for (int i=0;i<MetodoakLeihoAldaketa.lista_langileak.size();i++) {
 					
 			columnas[0]=MetodoakLeihoAldaketa.lista_langileak.get(i).getNan();

@@ -8,20 +8,27 @@ import java.util.ArrayList;;
 public class DbKontsultak {
 
 	
-public static ArrayList<String> langileTaulaIrakurri(){
+public static ArrayList<Langilea> langileTaulaIrakurri(){
 		
-		
+		ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
 		PreparedStatement s=null;
 		Connection konexioa=Konexioa.getKonexioa();
 
 		try {
 			s = konexioa.prepareStatement("select *  from langileak");
 			ResultSet rs = s.executeQuery();
-		
+			String nan, izena, abizenak, ardura, arduraduna, departamentua;
 
 			
 			while (rs.next()) {
-			
+			nan = rs.getString(0);
+			izena = rs.getString(1);
+			abizenak = rs.getString(2);
+			ardura= rs.getString(3);
+			arduraduna = rs.getString(4);
+			departamentua = rs.getString(5);
+			Langilea langilea = new Langilea(nan, izena, abizenak, ardura, arduraduna, departamentua);
+			lista_langilea.add(langilea);
 			}
 			s.close(); // PREPAREDSTATEMENT itxi
 			konexioa.close(); //DATUBASE konexioa itxi.
@@ -30,10 +37,10 @@ public static ArrayList<String> langileTaulaIrakurri(){
 		System.out.println(e.getMessage());
 		}
 		
-		return null;
+		return lista_langilea;
 	}
 
-public static void langileTaulaIdatzi(ArrayList<Langilea> lista_langileak) {
+public static void langileTaulaIdatzi(Langilea langile) {
 	
 	PreparedStatement s=null;
 	Connection konexioa=Konexioa.getKonexioa();
@@ -42,18 +49,18 @@ public static void langileTaulaIdatzi(ArrayList<Langilea> lista_langileak) {
 		 s =  konexioa.prepareStatement(
 				"INSERT INTO `LANGILEAK` (`NAN`, `IZENA`, `ABIZENAK`, `ARDURA`, `ARDURADUNA`,`DEPARTAMENTUAK_DEPART_KOD`)"
 						+ " VALUES(?, ?, ?, ?, ?, ?)");
-		 for (int i=0;i<lista_langileak.size();i++){
+		
 			 
-		 	s.setString(1, lista_langileak.get(i).getNan());
-		 	s.setString(2, lista_langileak.get(i).getIzena());
-		 	s.setString(3, lista_langileak.get(i).getAbizenak());
-		 	s.setString(4, lista_langileak.get(i).getArdura());
-		 	s.setString(5, lista_langileak.get(i).getArduraduna());
-		 	s.setString(6, lista_langileak.get(i).getDepartamentu_kod());
+		 	s.setString(1, langile.getNan());
+		 	s.setString(2, langile.getIzena());
+		 	s.setString(3, langile.getAbizenak());
+		 	s.setString(4, langile.getArdura());
+		 	s.setString(5, langile.getArduraduna());
+		 	s.setString(6, langile.getDepartamentu_kod());
 		 	
 			s.executeUpdate();
 			
-		 }
+		 
 
 
 		s.close(); // PREPAREDSTATEMENT itxi
