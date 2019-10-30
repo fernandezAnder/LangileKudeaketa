@@ -17,10 +17,9 @@ public class MetodoakLeihoAldaketa {
 		 * CSV FITXATEGITIK IRAKURTZEN DUEN FROGA EGITEKO 
 		 */
 		lista_langileak = eredua.FitxKudeaketaLangilea.irakurriLangileakCSV();
-		for (int i =0; i < lista_langileak.size();i++) {
-			System.out.println(lista_langileak.get(i));
-		}
-		eredua.DbKontsultak.langileTaulaIdatzi(lista_langileak);
+		MetodoakLeihoAldaketa.frogaLeihoa();
+		
+		DbKontsultak.langileTaulaIdatzi(lista_langileak);
 	}
 		
 
