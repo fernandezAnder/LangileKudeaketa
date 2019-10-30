@@ -27,7 +27,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnDepartamentuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.bigarrenLeihoa(); 
-
+			
 				
 				dispose();
 			}
