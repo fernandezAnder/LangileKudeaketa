@@ -15,21 +15,24 @@ import javax.swing.SwingConstants;
 
 public class Leiho1OngiEtorria extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JButton btnDepartamentuKudeaketa, btnEnplegatuKudeaketa, btnTxostenakSortu;
+	private JButton btnDepartamentuKudeaketa, btnEnplegatuKudeaketa, btnTxostenakSortu, btnIrten;
+	private JLabel lblMenuNagusia;
 	public Leiho1OngiEtorria() {
 	
 		//panelaren propietateak
-//		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\Argazkiak\\logoa.png")); 
 		getContentPane().setLayout(null);
+		this.setBounds(350,50,600,600);
+		this.setTitle("6.taldearen langileen kudeaketa");
+		this.setResizable(false); // neurketak ez aldatzeko
+		this.setSize(new Dimension(600, 600));
+		
 		
 		btnDepartamentuKudeaketa = new JButton("DEPARTAMENTU KUDEAKETA");
 		btnDepartamentuKudeaketa.setForeground(Color.BLACK);
 		btnDepartamentuKudeaketa.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnDepartamentuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MetodoakLeihoAldaketa.bigarrenLeihoa(); 
-			
-				
+				MetodoakLeihoAldaketa.bigarrenLeihoa(); 	
 				dispose();
 			}
 		});
@@ -60,26 +63,24 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnTxostenakSortu.setBounds(147, 321, 306, 67);
 		getContentPane().add(btnTxostenakSortu);
 		
-		JLabel lblMenuNagusia = new JLabel("MENU NAGUSIA");
+		lblMenuNagusia = new JLabel("MENU NAGUSIA");
 		lblMenuNagusia.setForeground(Color.BLACK);
 		lblMenuNagusia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMenuNagusia.setFont(new Font("Tahoma", Font.BOLD, 27));
 		lblMenuNagusia.setBounds(0, 35, 600, 49);
 		getContentPane().add(lblMenuNagusia);
 		
-		JButton btnIrten = new JButton("Irten");
+		btnIrten = new JButton("Irten");
+		btnIrten.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnIrten.setForeground(Color.BLACK);
-		btnIrten.setBounds(447, 510, 89, 23);
-		getContentPane().add(btnIrten);
-		this.setBounds(350,50,600,600);
-		this.setTitle("6.taldearen langileen kudeaketa");
-		this.setResizable(false); // neurketak ez aldatzeko
-		this.setSize(new Dimension(600, 600));
+		btnIrten.setBounds(446, 506, 90, 27);
 		btnIrten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
+		getContentPane().add(btnIrten);
+
 		
 	}		
 }

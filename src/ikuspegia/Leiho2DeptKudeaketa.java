@@ -20,9 +20,10 @@ public class Leiho2DeptKudeaketa extends JFrame {
 
 		private static final long serialVersionUID = 1L;
 		private JTextField txtDeptKod;
-		private JLabel lblDepartKod, lblIzena, lblKokapena , lblEraikuntzaZbk, lblIrakKop;
+		private JLabel lblDepartKod, lblIzena, lblKokapena , lblEraikuntzaZbk, lblIrakKop, lblDepartamentuKudeaketa, lblDepartamentuDatuak, lblKokapena_1
+;
 		private JTextField txtIzena, txtKokapena, txtEraikuntzaZbk, txtIrakKop;
-		private JButton btnKargatuFitxategia;
+		private JButton btnKargatuFitxategia, btnIrten ;
 		/**
 		 * @author talde6
 		 */
@@ -92,43 +93,43 @@ public class Leiho2DeptKudeaketa extends JFrame {
 			txtIrakKop.setBounds(209, 420, 124, 27);
 			getContentPane().add(txtIrakKop);
 			
-			JButton btnIrten = new JButton("Irten");
+			btnIrten = new JButton("Irten");
+			btnIrten.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnIrten.setForeground(Color.BLACK);
 			btnIrten.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					MetodoakLeihoAldaketa.lehenengoLeihoa();
 				}
 			});
-			btnIrten.setBounds(420, 499, 89, 23);
+			btnIrten.setBounds(420, 490, 89, 32);
 			getContentPane().add(btnIrten);
 			
-			JLabel lblDepartamentuKudeaketa = new JLabel("Departamentu Kudeaketa");
+			lblDepartamentuKudeaketa = new JLabel("Departamentu Kudeaketa");
 			lblDepartamentuKudeaketa.setHorizontalAlignment(SwingConstants.CENTER);
 			lblDepartamentuKudeaketa.setForeground(Color.BLACK);
 			lblDepartamentuKudeaketa.setFont(new Font("Tahoma", Font.BOLD, 22));
 			lblDepartamentuKudeaketa.setBounds(10, 25, 578, 43);
 			getContentPane().add(lblDepartamentuKudeaketa);
 			
-			JLabel lblDepartamentuDatuak = new JLabel("Departamentu datuak -----------------------------------------------------------------------------");
+			lblDepartamentuDatuak = new JLabel("Departamentu datuak -----------------------------------------------------------------------------------------");
 			lblDepartamentuDatuak.setBounds(10, 79, 590, 14);
 			getContentPane().add(lblDepartamentuDatuak);
-			
-			JLabel lblKokapena_1 = new JLabel("Kokapena ------------------------------------------------------------------------------------------------");
+
+			lblKokapena_1 = new JLabel("Kokapena --------------------------------------------------------------------------------------------------------");
 			lblKokapena_1.setBounds(10, 226, 578, 15);
 			getContentPane().add(lblKokapena_1);
 			
 			btnKargatuFitxategia = new JButton("Kargatu fitxategia");
+			btnKargatuFitxategia.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnKargatuFitxategia.setForeground(Color.BLACK);
 			btnKargatuFitxategia.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					MetodoakLeihoAldaketa.bostgarrenLeihoa();
 					dispose();
-					
 				}
 			});
-			btnKargatuFitxategia.setBounds(62, 499, 159, 23);
+			btnKargatuFitxategia.setBounds(62, 490, 173, 32);
 			getContentPane().add(btnKargatuFitxategia);
 
 		}		
 	}
-
-	
-

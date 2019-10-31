@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 
@@ -45,7 +46,9 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 			this.setTitle("6.taldearen langileen kudeaketa");
 			this.setResizable(false); // neurketak ez aldatzeko
 			this.setSize(new Dimension(802, 600));
-			btnIrten.setBounds(685, 499, 89, 23);
+			btnIrten.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnIrten.setForeground(Color.BLACK);
+			btnIrten.setBounds(643, 487, 89, 35);
 			
 			
 			btnIrten.addActionListener(new ActionListener() {
@@ -66,14 +69,17 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 			taulaFormatua();
 			table.getTableHeader().setReorderingAllowed(false);
 			scrollPane.setViewportView(table);
+			lblDepartamentuKudeaketa.setHorizontalAlignment(SwingConstants.CENTER);
 			
 			
-			lblDepartamentuKudeaketa.setBounds(312, 31, 210, 43);
+			lblDepartamentuKudeaketa.setBounds(0, 31, 796, 43);
 			lblDepartamentuKudeaketa.setFont(new Font("Tahoma", Font.BOLD, 22));
 			getContentPane().add(lblDepartamentuKudeaketa);
 			
 			btnKargatuFitxategia = new JButton("Kargatu fitxategia");
-			btnKargatuFitxategia.setBounds(62, 499, 125, 23);
+			btnKargatuFitxategia.setFont(new Font("Tahoma", Font.BOLD, 14));
+			btnKargatuFitxategia.setForeground(Color.BLACK);
+			btnKargatuFitxategia.setBounds(62, 487, 188, 35);
 			btnKargatuFitxategia.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					MetodoakLeihoAldaketa.bostgarrenLeihoa();
@@ -84,12 +90,13 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 			getContentPane().add(btnKargatuFitxategia);
 			
 			JButton button = new JButton("+");
+			button.setForeground(Color.BLACK);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					t1.addRow(constante);
 				}
 			});
-			button.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			button.setFont(new Font("Tahoma", Font.BOLD, 13));
 			button.setBounds(742, 128, 44, 23);
 			getContentPane().add(button);
 			btnInsert.addActionListener(new ActionListener() {
