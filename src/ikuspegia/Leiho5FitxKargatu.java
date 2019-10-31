@@ -1,20 +1,22 @@
 package ikuspegia;
 
+import java.io.File;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.awt.Font;
+import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import kontrolatzailea.MetodoakLeihoAldaketa;
-import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
+
+import kontrolatzailea.MetodoakLeihoAldaketa;
+import javax.swing.DefaultComboBoxModel;
 
 public class Leiho5FitxKargatu extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -40,15 +42,22 @@ public class Leiho5FitxKargatu extends JFrame {
 		getContentPane().add(btnIrten);
 		
 		lblMota = new JLabel("Mota: ");
+		lblMota.setForeground(Color.BLACK);
 		lblMota.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblMota.setBounds(38, 154, 55, 23);
 		getContentPane().add(lblMota);
 		
 		comboBox = new JComboBox();
+		comboBox.setForeground(Color.BLACK);
+		comboBox.addItem("xml");
+		comboBox.addItem("csv");
+		comboBox.addItem("json");
+		comboBox.setSelectedIndex(0);
 		comboBox.setBounds(103, 157, 73, 20);
 		getContentPane().add(comboBox);
 		
 		lblRuta = new JLabel("Ruta: ");
+		lblRuta.setForeground(Color.BLACK);
 		lblRuta.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblRuta.setBounds(38, 207, 55, 23);
 		getContentPane().add(lblRuta);
@@ -65,6 +74,7 @@ public class Leiho5FitxKargatu extends JFrame {
 		getContentPane().add(btnKargatu);
 		
 		button = new JButton("...");
+		button.setForeground(Color.BLACK);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jf = new JFileChooser();

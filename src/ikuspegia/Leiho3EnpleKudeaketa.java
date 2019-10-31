@@ -1,5 +1,7 @@
 package ikuspegia;
 
+import java.util.ArrayList;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -7,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,42 +24,42 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNan, txtIzena, txtAbizena, txtArduraduna;
-	private JLabel lblArdura, lblArduraduna, lblNan, lblIzena, lblabizenak, lblDepartamentuKodea, lblDerrigorrezNan,
-			lblDerrigorrezIzena, lblDerrigorrezAbizenak, lblDerrigorrezDeptKod, lblDerrigorrezArdurana, lblLanarenDatuak, lblLangileDatuak, lblDerrigorrezArdura;
+	private JLabel lblArdura, lblArduraduna, lblNan, lblIzena, lblabizenak, lblDepartamentuKodea, lblDerrigorrezNan, lblSoldata,
+			lblDerrigorrezIzena, lblDerrigorrezAbizenak, lblDerrigorrezDeptKod, lblDerrigorrezArdurana, lblLanarenDatuak, lblLangileDatuak, lblDerrigorrezArdura, lblDerrigorrezSoldata;
 	private JComboBox jcbDeptKod, jcbArdura;
 	private JButton btnGorde, btnEzeztatu, btnKargatuFitxategia;
 	private ArrayList<String> ardura;
-	/**
-	 * Ongietorria ematen duen panela sortu
-	 * 
-	 * @author talde3
-	 */
-	public Leiho3EnpleKudeaketa() {
+	private JTextField txtSoldata;
 
+	public Leiho3EnpleKudeaketa() {
 		// panelaren propietateak
 //		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\Argazkiak\\logoa.png")); 
 		getContentPane().setLayout(null);
 
 		this.setBounds(350, 50, 600, 600);
-		this.setTitle("6.taldearen langileen kudeaketa");
+		this.setTitle("6.taldearen LANGILEEN kudeaketa");
 		this.setResizable(false); // neurketak ez aldatzeko
 		this.setSize(new Dimension(600, 600));
 
+		lblLangileDatuak = new JLabel("Langile datuak ---------------------------------------------------------------------------------------------------------------");
+		lblLangileDatuak.setForeground(Color.GRAY);
+		lblLangileDatuak.setBounds(10, 12, 590, 21);
+		getContentPane().add(lblLangileDatuak);
+		
 		lblNan = new JLabel("NAN");
 		lblNan.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNan.setForeground(Color.BLACK);
-		lblNan.setBounds(41, 46, 47, 27);
+		lblNan.setBounds(41, 33, 47, 27);
 		getContentPane().add(lblNan);
 
 		txtNan = new JTextField();
-		txtNan.setBounds(41, 74, 124, 27);
+		txtNan.setBounds(41, 61, 124, 27);
 		txtNan.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char letraNan = e.getKeyChar();
 				String cadena = letraNan + "";
-			/*	if (txtNan.getText().length() > 8 || !cadena.matches("[0-9A-Z]"))
-					e.consume(); // ez du godetzen*/
-				
+				if (txtNan.getText().length() > 8 || !cadena.matches("[0-9A-Z]"))
+					e.consume(); // ez du godetzen
 			}
 		});
 		txtNan.setColumns(10);
@@ -67,18 +68,18 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		lblIzena = new JLabel("Izena");
 		lblIzena.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblIzena.setForeground(Color.BLACK);
-		lblIzena.setBounds(41, 139, 56, 21);
+		lblIzena.setBounds(41, 100, 56, 21);
 		getContentPane().add(lblIzena);
 
 		txtIzena = new JTextField();
 		txtIzena.setColumns(10);
-		txtIzena.setBounds(41, 167, 124, 27);
+		txtIzena.setBounds(41, 128, 124, 27);
 		txtIzena.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char letraIzena = e.getKeyChar();
 				String cadena = letraIzena + "";
-				/*if (txtIzena.getText().length() > 45 || !cadena.matches("[a-zA-Z]"))
-					e.consume(); // ez du godetzen*/
+				if (txtIzena.getText().length() > 45 || !cadena.matches("[a-zA-Z]"))
+					e.consume(); // ez du godetzen
 				
 			}
 		});
@@ -87,49 +88,76 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		lblabizenak = new JLabel("Abizenak");
 		lblabizenak.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblabizenak.setForeground(Color.BLACK);
-		lblabizenak.setBounds(268, 139, 86, 21);
+		lblabizenak.setBounds(41, 163, 86, 21);
 		getContentPane().add(lblabizenak);
 
 		txtAbizena = new JTextField();
 		txtAbizena.setForeground(Color.BLACK);
 		txtAbizena.setColumns(10);
-		txtAbizena.setBounds(268, 167, 228, 27);
+		txtAbizena.setBounds(41, 191, 228, 27);
 		txtAbizena.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char letraAbizena = e.getKeyChar();
 				String cadena = letraAbizena + "";
-				/*if (txtAbizena.getText().length() > 45 || !cadena.matches("[a-zA-Z]"))
-					e.consume(); // ez du godetzen*/
+				if (txtAbizena.getText().length() > 45 || !cadena.matches("[a-zA-Z]"))
+					e.consume(); // ez du godetzen
 				
 			}
 		});
 		getContentPane().add(txtAbizena);
 
+		lblLanarenDatuak = new JLabel("Lanaren datuak -----------------------------------------------------------------------------------------------------------");
+		lblLanarenDatuak.setForeground(Color.GRAY);
+		lblLanarenDatuak.setBounds(10, 227, 590, 26);
+		getContentPane().add(lblLanarenDatuak);
+		
 		lblArdura = new JLabel("Ardura");
 		lblArdura.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblArdura.setForeground(Color.BLACK);
-		lblArdura.setBounds(42, 352, 66, 27);
+		lblArdura.setBounds(42, 333, 66, 27);
 		getContentPane().add(lblArdura);
 
 		lblArduraduna = new JLabel("Arduraduna");
 		lblArduraduna.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblArduraduna.setForeground(Color.BLACK);
-		lblArduraduna.setBounds(270, 352, 143, 27);
+		lblArduraduna.setBounds(41, 408, 143, 27);
 		getContentPane().add(lblArduraduna);
 
 		txtArduraduna = new JTextField();
 		txtArduraduna.setForeground(Color.BLACK);
 		txtArduraduna.setColumns(10);
-		txtArduraduna.setBounds(270, 386, 124, 27);
+		txtArduraduna.setBounds(41, 442, 124, 27);
 		txtArduraduna.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char letraArduraduna = e.getKeyChar();
 				String cadena = letraArduraduna + "";
-				/*if (txtArduraduna.getText().length() > 8 || !cadena.matches("[0-9A-Z]"))
-					e.consume(); // ez du godetzen	*/
+				if (txtArduraduna.getText().length() > 8 || !cadena.matches("[0-9A-Z]"))
+					e.consume(); // ez du godetzen
 			}
 		});
 		getContentPane().add(txtArduraduna);
+		
+		
+		txtSoldata = new JTextField();
+		txtSoldata.setForeground(Color.BLACK);
+		txtSoldata.setColumns(10);
+		txtSoldata.setBounds(262, 362, 124, 27);
+		txtSoldata.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char letraSoldata = e.getKeyChar();
+				String cadena = letraSoldata + "";
+				if (txtSoldata.getText().length() > 8 || !cadena.matches("[0-9.]"))
+					e.consume(); // ez du godetzen
+			}
+		});
+		txtNan.setColumns(10);
+		getContentPane().add(txtSoldata);
+		
+		lblSoldata = new JLabel("Soldata");
+		lblSoldata.setForeground(Color.BLACK);
+		lblSoldata.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblSoldata.setBounds(262, 333, 86, 27);
+		getContentPane().add(lblSoldata);
 
 		ArrayList<String> froga = new ArrayList<String>();
 		froga.add("aaa");
@@ -141,53 +169,89 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		jcbDeptKod = new JComboBox();
 		jcbDeptKod.setFont(new Font("Dialog", Font.PLAIN, 16));
 		jcbDeptKod.setForeground(Color.BLACK);
-		jcbDeptKod.setBounds(155, 288, 159, 42);
+		jcbDeptKod.setBounds(41, 288, 159, 33);
 		/* DEPARTAMENTU KODEAK JARRI BEHAR DIRA, EZ froga */
-		for (int i = 0; i < froga.size(); i++) {
-			System.out.println(froga.get(i));
+		for (int i = 0; i < froga.size(); i++)
 			jcbDeptKod.addItem(froga.get(i));
-		}
 		getContentPane().add(jcbDeptKod);
 
+		ardura=Metodoak.arrayListArduraSortu();
+		jcbArdura = new JComboBox();
+		jcbArdura.setForeground(Color.BLACK);
+		jcbArdura.setFont(new Font("Dialog", Font.PLAIN, 16));
+		jcbArdura.setBounds(41, 358, 159, 33);
+		for (int i = 0; i < ardura.size(); i++) {
+			jcbArdura.addItem(ardura.get(i));
+		}
+		getContentPane().add(jcbArdura);
+		
+		// mezuak
 		lblDepartamentuKodea = new JLabel("Departamentu kodea");
 		lblDepartamentuKodea.setForeground(Color.BLACK);
 		lblDepartamentuKodea.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblDepartamentuKodea.setBounds(141, 243, 200, 33);
+		lblDepartamentuKodea.setBounds(41, 254, 200, 33);
 		getContentPane().add(lblDepartamentuKodea);
 
+		lblDerrigorrezNan = new JLabel("*");
+		lblDerrigorrezNan.setForeground(Color.RED);
+		lblDerrigorrezNan.setBounds(83, 33, 505, 15);
+		getContentPane().add(lblDerrigorrezNan);
+
+		lblDerrigorrezIzena = new JLabel("*");
+		lblDerrigorrezIzena.setForeground(Color.RED);
+		lblDerrigorrezIzena.setBounds(91, 100, 167, 15);
+		getContentPane().add(lblDerrigorrezIzena);
+
+		lblDerrigorrezAbizenak = new JLabel("*");
+		lblDerrigorrezAbizenak.setForeground(Color.RED);
+		lblDerrigorrezAbizenak.setBounds(123, 163, 200, 15);
+		getContentPane().add(lblDerrigorrezAbizenak);
+
+		lblDerrigorrezDeptKod = new JLabel("*");
+		lblDerrigorrezDeptKod.setForeground(Color.RED);
+		lblDerrigorrezDeptKod.setBounds(238, 264, 350, 15);
+		getContentPane().add(lblDerrigorrezDeptKod);
+
+		lblDerrigorrezArdurana = new JLabel("");
+		lblDerrigorrezArdurana.setForeground(Color.RED);
+		lblDerrigorrezArdurana.setBounds(149, 408, 426, 27);
+		getContentPane().add(lblDerrigorrezArdurana);
+		
+		lblDerrigorrezSoldata = new JLabel("*");
+		lblDerrigorrezSoldata.setForeground(Color.RED);
+		lblDerrigorrezSoldata.setBounds(335, 333, 350, 15);
+		getContentPane().add(lblDerrigorrezSoldata);
+
+		lblDerrigorrezArdura = new JLabel("*");
+		lblDerrigorrezArdura.setForeground(Color.RED);
+		lblDerrigorrezArdura.setBounds(106, 333, 114, 21);
+		lblDerrigorrezArdura.setVisible(false);
+		getContentPane().add(lblDerrigorrezArdura);
+		
+		
+		
+		// botoiak
 		btnGorde = new JButton("Gorde");
 		btnGorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!txtNan.getText().matches("\\d{8}+[A-Z]{1}"))
-					lblDerrigorrezNan.setText("* Lehenengo 8 karaktereak zenbakiak izan behar dira eta azkena letra larria");
+					lblDerrigorrezNan.setText("* Lehenengo 8 karaktereak zenbakiak eta azkena letra larria");
 				else
 					lblDerrigorrezNan.setText("*");
-
-				if (txtIzena.getText().matches("[a-zA-Z]"))
-					lblDerrigorrezIzena.setText("* Letrak bakarrik");
-				else
-					lblDerrigorrezIzena.setText("*");
-
-				if (txtAbizena.getText().matches("[a-zA-Z]"))
-					lblDerrigorrezAbizenak.setText("* Letrak bakarrik");
-				else
-					lblDerrigorrezAbizenak.setText("*");
-
 				
 				if (!txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}"))
-					lblDerrigorrezArdura.setText("NAN bat izan behar da, 8 karakter zenbakiz eta azkena letra larriz");
+					lblDerrigorrezArdurana.setText("* Lehenengo 8 karaktereak zenbakiak eta azkena letra larria");
 				else
-					lblDerrigorrezArdura.setText("*");
-
+					lblDerrigorrezArdurana.setText("*");
 
 				if (txtNan.getText().matches("\\d{8}+[A-Z]{1}") && !txtIzena.getText().matches("[a-zA-Z]")
-						&& txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") && !txtAbizena.getText().matches("[a-zA-Z]"))
+						&& txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") && !txtAbizena.getText().matches("[a-zA-Z]") && txtSoldata.getText().matches("[0-9]{1,}+[.,]+[0-9]{2}"))
 					System.out.println("baaaaiiii"); // llamar metodo subir datos
 			}
 		});
 		btnGorde.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnGorde.setForeground(Color.BLACK);
-		btnGorde.setBounds(252, 509, 114, 33);
+		btnGorde.setBounds(283, 509, 99, 33);
 		getContentPane().add(btnGorde);
 
 		btnEzeztatu = new JButton("Ezeztatu");
@@ -199,54 +263,11 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		});
 		btnEzeztatu.setForeground(Color.BLACK);
 		btnEzeztatu.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnEzeztatu.setBounds(416, 509, 114, 33);
+		btnEzeztatu.setBounds(435, 509, 114, 33);
 		getContentPane().add(btnEzeztatu);
-
-
-		lblDerrigorrezNan = new JLabel("*");
-		lblDerrigorrezNan.setForeground(Color.RED);
-		lblDerrigorrezNan.setBounds(83, 46, 447, 15);
-		getContentPane().add(lblDerrigorrezNan);
-
-		lblDerrigorrezIzena = new JLabel("*");
-		lblDerrigorrezIzena.setForeground(Color.RED);
-		lblDerrigorrezIzena.setBounds(91, 139, 167, 15);
-		getContentPane().add(lblDerrigorrezIzena);
-
-		lblDerrigorrezAbizenak = new JLabel("*");
-		lblDerrigorrezAbizenak.setForeground(Color.RED);
-		lblDerrigorrezAbizenak.setBounds(350, 139, 200, 15);
-		getContentPane().add(lblDerrigorrezAbizenak);
-
-		lblDerrigorrezDeptKod = new JLabel("*");
-		lblDerrigorrezDeptKod.setForeground(Color.RED);
-		lblDerrigorrezDeptKod.setBounds(304, 255, 280, 15);
-		getContentPane().add(lblDerrigorrezDeptKod);
-
-		lblDerrigorrezArdurana = new JLabel("");
-		lblDerrigorrezArdurana.setForeground(Color.RED);
-		lblDerrigorrezArdurana.setBounds(367, 361, 183, 15);
-		getContentPane().add(lblDerrigorrezArdurana);
-
-		lblDerrigorrezArdura = new JLabel("*");
-		lblDerrigorrezArdura.setForeground(Color.RED);
-		lblDerrigorrezArdura.setBounds(102, 352, 157, 15);
-		lblDerrigorrezArdura.setVisible(false);
-		getContentPane().add(lblDerrigorrezArdura);
-
-		
-		ardura=Metodoak.arrayListArduraSortu();
-		jcbArdura = new JComboBox();
-		jcbArdura.setForeground(Color.BLACK);
-		jcbArdura.setFont(new Font("Dialog", Font.PLAIN, 16));
-		jcbArdura.setBounds(41, 377, 159, 42);
-		for (int i = 0; i < ardura.size(); i++) {
-			jcbArdura.addItem(ardura.get(i));
-		}
-		getContentPane().add(jcbArdura);
 		
 		btnKargatuFitxategia = new JButton("Kargatu fitxategia");
-		btnKargatuFitxategia.setFont(new Font("Dialog", Font.BOLD, 13));
+		btnKargatuFitxategia.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnKargatuFitxategia.setForeground(Color.BLACK);
 		btnKargatuFitxategia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -254,19 +275,10 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 				dispose();
 			}
 		});
-		btnKargatuFitxategia.setBounds(41, 509, 188, 31);
+		btnKargatuFitxategia.setBounds(28, 510, 212, 31);
 		getContentPane().add(btnKargatuFitxategia);
 
-		lblLanarenDatuak = new JLabel("Lanaren datuak -----------------------------------------------------------------------------------------------------------");
-		lblLanarenDatuak.setBounds(10, 218, 590, 14);
-		getContentPane().add(lblLanarenDatuak);
-		
-		lblLangileDatuak = new JLabel("Langile datuak ---------------------------------------------------------------------------------------------------------------");
-		lblLangileDatuak.setBounds(10, 31, 590, 14);
-		getContentPane().add(lblLangileDatuak);
-		
-		
-		
+
 		
 	}
 }

@@ -1,17 +1,17 @@
 package ikuspegia;
 
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import kontrolatzailea.MetodoakLeihoAldaketa;
-import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import kontrolatzailea.MetodoakLeihoAldaketa;
 
 public class Leiho1OngiEtorria extends JFrame {
 	private static final long serialVersionUID = 1L;

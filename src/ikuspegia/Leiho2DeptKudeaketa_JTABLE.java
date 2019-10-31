@@ -1,46 +1,39 @@
 package ikuspegia;
 
+import java.util.Vector;
+
 import java.awt.Dimension;
-
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-
-import eredua.Langilea;
-import jdk.nashorn.internal.runtime.ListAdapter;
-import kontrolatzailea.MetodoakLeihoAldaketa;
-import sun.swing.MenuItemLayoutHelper.ColumnAlignment;
-
-import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
+
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+
+import kontrolatzailea.MetodoakLeihoAldaketa;
+import eredua.Langilea;
+
 
 public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	protected static final Vector constante = null;
-	private JButton btnKargatuFitxategia;
+	private JButton btnKargatuFitxategia, btnIrten = new JButton("Irten"), plus = new JButton("+"), btnReload = new JButton("Reload");
 	private JTable table;
-	private JButton btnIrten = new JButton("Irten"), plus = new JButton("+"), btnReload = new JButton("Reload");
 	private JLabel lblDepartamentuKudeaketa = new JLabel("Langile Kudeaketa");
 	private JScrollPane scrollPane = new JScrollPane();
 	private DefaultTableModel t1 = new DefaultTableModel();
 	private String[] columnas = new String[6];
+	
 	private final JButton btnInsert = new JButton("Insert"), btnUpdate = new JButton("Update"),
 			btnDelete = new JButton("Delete");
 
-	/**
-	 * @author talde6
-	 */
 	public Leiho2DeptKudeaketa_JTABLE() {
 		this.setBounds(350, 50, 600, 600);
 		this.setTitle("6.taldearen langileen kudeaketa");
@@ -66,6 +59,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 		taulaFormatua();
 		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
+		lblDepartamentuKudeaketa.setForeground(Color.BLACK);
 		lblDepartamentuKudeaketa.setHorizontalAlignment(SwingConstants.CENTER);
 
 		lblDepartamentuKudeaketa.setBounds(0, 31, 796, 43);
@@ -94,6 +88,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 		plus.setFont(new Font("Tahoma", Font.BOLD, 13));
 		plus.setBounds(742, 128, 44, 23);
 		getContentPane().add(plus);
+		btnInsert.setForeground(Color.BLACK);
 
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,6 +106,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 		});
 		btnInsert.setBounds(113, 409, 89, 23);
 		getContentPane().add(btnInsert);
+		btnUpdate.setForeground(Color.BLACK);
 
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,6 +122,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 		});
 		btnUpdate.setBounds(352, 409, 89, 23);
 		getContentPane().add(btnUpdate);
+		btnDelete.setForeground(Color.BLACK);
 
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -140,6 +137,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 		});
 		btnDelete.setBounds(574, 409, 89, 23);
 		getContentPane().add(btnDelete);
+		btnReload.setForeground(Color.BLACK);
 
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,7 +147,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 				taulaBete(columnas);
 			}
 		});
-		btnReload.setBounds(685, 86, 75, 23);
+		btnReload.setBounds(631, 86, 129, 23);
 		getContentPane().add(btnReload);
 
 	}
