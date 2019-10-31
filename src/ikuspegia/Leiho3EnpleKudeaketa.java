@@ -211,13 +211,15 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 		txtSaberBorrar.setColumns(10);
 		
 		JButton btnKargatuFitxategia = new JButton("Kargatu fitxategia");
+		btnKargatuFitxategia.setFont(new Font("Dialog", Font.BOLD, 13));
+		btnKargatuFitxategia.setForeground(Color.BLACK);
 		btnKargatuFitxategia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.bostgarrenLeihoa();
 				dispose();
 			}
 		});
-		btnKargatuFitxategia.setBounds(41, 517, 124, 23);
+		btnKargatuFitxategia.setBounds(41, 509, 188, 31);
 		getContentPane().add(btnKargatuFitxategia);
 		
 		

@@ -11,6 +11,7 @@ import kontrolatzailea.MetodoakLeihoAldaketa;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Leiho1OngiEtorria extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -60,11 +61,14 @@ public class Leiho1OngiEtorria extends JFrame {
 		getContentPane().add(btnTxostenakSortu);
 		
 		JLabel lblMenuNagusia = new JLabel("MENU NAGUSIA");
+		lblMenuNagusia.setForeground(Color.BLACK);
+		lblMenuNagusia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMenuNagusia.setFont(new Font("Tahoma", Font.BOLD, 27));
-		lblMenuNagusia.setBounds(190, 35, 224, 49);
+		lblMenuNagusia.setBounds(0, 35, 600, 49);
 		getContentPane().add(lblMenuNagusia);
 		
 		JButton btnIrten = new JButton("Irten");
+		btnIrten.setForeground(Color.BLACK);
 		btnIrten.setBounds(447, 510, 89, 23);
 		getContentPane().add(btnIrten);
 		this.setBounds(350,50,600,600);

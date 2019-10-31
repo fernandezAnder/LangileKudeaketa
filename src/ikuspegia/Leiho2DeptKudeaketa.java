@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class Leiho2DeptKudeaketa extends JFrame {
 
@@ -97,20 +98,22 @@ public class Leiho2DeptKudeaketa extends JFrame {
 					MetodoakLeihoAldaketa.lehenengoLeihoa();
 				}
 			});
-			btnIrten.setBounds(424, 513, 89, 23);
+			btnIrten.setBounds(420, 499, 89, 23);
 			getContentPane().add(btnIrten);
 			
 			JLabel lblDepartamentuKudeaketa = new JLabel("Departamentu Kudeaketa");
+			lblDepartamentuKudeaketa.setHorizontalAlignment(SwingConstants.CENTER);
+			lblDepartamentuKudeaketa.setForeground(Color.BLACK);
 			lblDepartamentuKudeaketa.setFont(new Font("Tahoma", Font.BOLD, 22));
-			lblDepartamentuKudeaketa.setBounds(140, 25, 297, 43);
+			lblDepartamentuKudeaketa.setBounds(10, 25, 578, 43);
 			getContentPane().add(lblDepartamentuKudeaketa);
 			
-			JLabel lblDepartamentuDatuak = new JLabel("Departamentu datuak -------------------------------------------------------------------------------------------");
-			lblDepartamentuDatuak.setBounds(10, 79, 535, 14);
+			JLabel lblDepartamentuDatuak = new JLabel("Departamentu datuak -----------------------------------------------------------------------------");
+			lblDepartamentuDatuak.setBounds(10, 79, 590, 14);
 			getContentPane().add(lblDepartamentuDatuak);
 			
-			JLabel lblKokapena_1 = new JLabel("Kokapena ----------------------------------------------------------------------------------------------------------");
-			lblKokapena_1.setBounds(10, 226, 535, 14);
+			JLabel lblKokapena_1 = new JLabel("Kokapena ------------------------------------------------------------------------------------------------");
+			lblKokapena_1.setBounds(10, 226, 578, 15);
 			getContentPane().add(lblKokapena_1);
 			
 			btnKargatuFitxategia = new JButton("Kargatu fitxategia");
@@ -121,7 +124,7 @@ public class Leiho2DeptKudeaketa extends JFrame {
 					
 				}
 			});
-			btnKargatuFitxategia.setBounds(62, 499, 125, 23);
+			btnKargatuFitxategia.setBounds(62, 499, 159, 23);
 			getContentPane().add(btnKargatuFitxategia);
 
 		}		
