@@ -19,9 +19,7 @@ import javax.swing.JButton;
 import kontrolatzailea.MetodoakLeihoAldaketa;
 import eredua.Langilea;
 
-
 public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
-
 	private static final long serialVersionUID = 1L;
 	protected static final Vector constante = null;
 	private JButton btnKargatuFitxategia, btnIrten = new JButton("Irten"), plus = new JButton("+"), btnReload = new JButton("Reload");
@@ -51,7 +49,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().add(btnIrten);
 		scrollPane.setBorder(null);
-		scrollPane.setBounds(37, 126, 695, 257);
+		scrollPane.setBounds(12, 97, 720, 299);
 		getContentPane().add(scrollPane);
 
 		table = new JTable();
@@ -85,8 +83,8 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 				t1.addRow(constante);
 			}
 		});
-		plus.setFont(new Font("Tahoma", Font.BOLD, 13));
-		plus.setBounds(742, 128, 44, 23);
+		plus.setFont(new Font("Tahoma", Font.BOLD, 11));
+		plus.setBounds(738, 109, 47, 35);
 		getContentPane().add(plus);
 		btnInsert.setForeground(Color.BLACK);
 
@@ -99,9 +97,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 						t1.getValueAt(table.getSelectedRow(), 3).toString(),
 						t1.getValueAt(table.getSelectedRow(), 4).toString(),
 						t1.getValueAt(table.getSelectedRow(), 5).toString());
-				// Esta leyendo directamente del modelo en vez del kontrolador. PENDIENTE DE
-				// CORREGIR
-				eredua.DbKontsultak.langileTaulaIdatzi(langile);
+				kontrolatzailea.MetodoakBBDD.langileTaulaIdatzi(langile);
 			}
 		});
 		btnInsert.setBounds(113, 409, 89, 23);
@@ -117,7 +113,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 						t1.getValueAt(table.getSelectedRow(), 3).toString(),
 						t1.getValueAt(table.getSelectedRow(), 4).toString(),
 						t1.getValueAt(table.getSelectedRow(), 5).toString());
-				System.out.println(langile);
+				kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
 			}
 		});
 		btnUpdate.setBounds(352, 409, 89, 23);
@@ -126,13 +122,14 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Langilea langile = new Langilea(t1.getValueAt(table.getSelectedRow(), 0).toString(),
+				Langilea langile = new Langilea(
+						t1.getValueAt(table.getSelectedRow(), 0).toString(),
 						t1.getValueAt(table.getSelectedRow(), 1).toString(),
 						t1.getValueAt(table.getSelectedRow(), 2).toString(),
 						t1.getValueAt(table.getSelectedRow(), 3).toString(),
 						t1.getValueAt(table.getSelectedRow(), 4).toString(),
 						t1.getValueAt(table.getSelectedRow(), 5).toString());
-				System.out.println(langile);
+				kontrolatzailea.MetodoakBBDD.langileTaulaEzabatu(langile);
 			}
 		});
 		btnDelete.setBounds(574, 409, 89, 23);
@@ -141,15 +138,12 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Se esta llamando directamente del paquete vista al modelo. PENDIENTE DE
-				// CORREGIR
-				MetodoakLeihoAldaketa.lista_langileak = eredua.DbKontsultak.langileTaulaIrakurri();
+				MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakBBDD.langileTaulaIrakurri();
 				taulaBete(columnas);
 			}
 		});
-		btnReload.setBounds(631, 86, 129, 23);
+		btnReload.setBounds(634, 62, 129, 23);
 		getContentPane().add(btnReload);
-
 	}
 
 	public void taulaFormatua() {

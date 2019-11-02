@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import eredua.Langilea;
 import kontrolatzailea.Metodoak;
 import kontrolatzailea.MetodoakLeihoAldaketa;
 
