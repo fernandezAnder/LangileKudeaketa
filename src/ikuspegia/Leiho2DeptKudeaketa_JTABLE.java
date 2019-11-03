@@ -1,5 +1,6 @@
 package ikuspegia;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import java.awt.Dimension;
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 
 import kontrolatzailea.MetodoakLeihoAldaketa;
 import eredua.Langilea;
+import jdk.nashorn.internal.runtime.ListAdapter;
 
 public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -71,7 +73,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 		btnKargatuFitxategia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.bostgarrenLeihoa();
-				dispose();
+				
 
 			}
 		});
@@ -138,7 +140,9 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				taulaEzabatu();
 				MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakBBDD.langileTaulaIrakurri();
+				columnas = new String [6];
 				taulaBete(columnas);
 			}
 		});
@@ -168,5 +172,12 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 			columnas[5] = MetodoakLeihoAldaketa.lista_langileak.get(i).getDepartamentu_kod();
 			t1.addRow(columnas);
 		}
+	}
+	private void taulaEzabatu() {
+		while (t1.getRowCount() > 0)
+		{
+		t1.removeRow(0);
+		}
+		
 	}
 }

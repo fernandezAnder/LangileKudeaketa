@@ -17,19 +17,19 @@ public class DbKontsultak {
 			String nan, izena, abizenak, ardura, arduraduna, departamentua;
 
 			while (rs.next()) {
-				nan = rs.getString(0);
-				izena = rs.getString(1);
-				abizenak = rs.getString(2);
-				ardura = rs.getString(3);
-				arduraduna = rs.getString(4);
-				departamentua = rs.getString(5);
+				nan = rs.getString(1);
+				izena = rs.getString(2);
+				abizenak = rs.getString(3);
+				ardura = rs.getString(4);
+				arduraduna = rs.getString(5);
+				departamentua = rs.getString(6);
 				Langilea langilea = new Langilea(nan, izena, abizenak, ardura, arduraduna, departamentua);
 				lista_langilea.add(langilea);
 				System.out.println(langilea);
 
 			}
 			s.close(); // PREPAREDSTATEMENT itxi
-			konexioa.close(); // DATUBASE konexioa itxi.
+			//konexioa.close(); // DATUBASE konexioa itxi.
 
 		} catch (Exception e) {
 			e.getMessage();
@@ -52,6 +52,30 @@ public class DbKontsultak {
 			s.setString(5, langile.getArduraduna());
 			s.setString(6, langile.getDepartamentu_kod());
 			s.executeUpdate();
+			s.close(); // PREPAREDSTATEMENT itxi
+			konexioa.close(); // DATUBASE konexioa itxi.
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+	public static void multiLangileTaulaIdatzi(ArrayList<Langilea> lista_langileak) {
+		PreparedStatement s = null;
+		Connection konexioa = Konexioa.getKonexioa();
+		try {
+			s = konexioa.prepareStatement(
+					"INSERT INTO `LANGILEAK` (`NAN`, `IZENA`, `ABIZENAK`, `ARDURA`, `ARDURADUNA`,`DEPARTAMENTUAK_DEPART_KOD`)"
+							+ " VALUES(?, ?, ?, ?, ?, ?)");
+			for (Langilea langile : lista_langileak) {
+				s.setString(1, langile.getNan());
+				s.setString(2, langile.getIzena());
+				s.setString(3, langile.getAbizenak());
+				s.setString(4, langile.getArdura());
+				s.setString(5, langile.getArduraduna());
+				s.setString(6, langile.getDepartamentu_kod());
+				s.executeUpdate();
+			}
 			s.close(); // PREPAREDSTATEMENT itxi
 			konexioa.close(); // DATUBASE konexioa itxi.
 

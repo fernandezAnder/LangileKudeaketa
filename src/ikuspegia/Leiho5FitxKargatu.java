@@ -24,6 +24,7 @@ public class Leiho5FitxKargatu extends JFrame {
 	private JLabel lblMenuNagusia, lblMota, lblRuta;
 	private JButton btnIrten, btnKargatu, button;
 	private JComboBox comboBox;
+	private File fitxategia;
 	
 	public Leiho5FitxKargatu() {	
 		//panelaren propietateak
@@ -68,6 +69,21 @@ public class Leiho5FitxKargatu extends JFrame {
 		textField.setColumns(10);
 		
 		btnKargatu = new JButton("Kargatu");
+		btnKargatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if( "xml".equals(comboBox.getSelectedItem().toString())){
+				
+					
+				}else if ("csv".equals(comboBox.getSelectedItem().toString())) {
+					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = eredua.FitxKudeaketaLangilea.irakurriLangileakCSV(fitxategia.getAbsolutePath());	
+					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
+				}else if("json".equals(comboBox.getSelectedItem().toString())) {
+					
+				}else {
+					System.out.println("Erroa Aukerarekin");
+				}
+			}
+		});
 		btnKargatu.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnKargatu.setForeground(Color.BLACK);
 		btnKargatu.setBounds(260, 493, 123, 40);
@@ -79,7 +95,7 @@ public class Leiho5FitxKargatu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jf = new JFileChooser();
 				jf.showOpenDialog(button);
-				File fitxategia = jf.getSelectedFile();
+				fitxategia = jf.getSelectedFile();
 				if (fitxategia != null) {
 					textField.setText(fitxategia.getAbsolutePath());
 				}

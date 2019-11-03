@@ -35,13 +35,13 @@ import jdk.nashorn.internal.parser.JSONParser;
 public class FitxKudeaketaLangilea {
 
 	// .csv an dauden lerroak arraylist batean sartu
-	public static ArrayList<Langilea> irakurriLangileakCSV() {
+	public static ArrayList<Langilea> irakurriLangileakCSV(String helbidea) {
 		// bariableak
 		ArrayList<Langilea> lista_langileak = new ArrayList<Langilea>();
 		FileReader fitxeroa = null;
 		BufferedReader br = null;
 		try { // aurkitzen duen ala ez
-			fitxeroa = new FileReader("src/fitxategiak/langileak.csv");
+			fitxeroa = new FileReader(helbidea);
 			br = new BufferedReader(fitxeroa);
 			// Langilearen bariableak
 

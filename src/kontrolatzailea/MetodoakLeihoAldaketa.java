@@ -13,10 +13,7 @@ public class MetodoakLeihoAldaketa {
 		Leiho1OngiEtorria Leiho1 = new Leiho1OngiEtorria();
 		Leiho1.setVisible(true);
 		
-		/**
-		 * CSV FITXATEGITIK IRAKURTZEN DUEN FROGA EGITEKO 
-		 */
-		lista_langileak = eredua.FitxKudeaketaLangilea.irakurriLangileakCSV();
+		lista_langileak = eredua.DbKontsultak.langileTaulaIrakurri();
 		MetodoakLeihoAldaketa.frogaLeihoa();
 		
 		
@@ -24,7 +21,7 @@ public class MetodoakLeihoAldaketa {
 		
 
 	public static void bigarrenLeihoa() {
-		Leiho2DeptKudeaketa Leiho2 = new Leiho2DeptKudeaketa();
+		Leiho2DeptKudeaketa_JTABLE Leiho2 = new Leiho2DeptKudeaketa_JTABLE();
 		Leiho2.setVisible(true);
 	}
 
