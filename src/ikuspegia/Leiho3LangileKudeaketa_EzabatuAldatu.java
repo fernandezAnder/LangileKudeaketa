@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
@@ -21,7 +23,7 @@ import kontrolatzailea.MetodoakLeihoAldaketa;
 import eredua.Langilea;
 import jdk.nashorn.internal.runtime.ListAdapter;
 
-public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
+public class Leiho3LangileKudeaketa_EzabatuAldatu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected static final Vector constante = null;
 	private JButton btnKargatuFitxategia, btnIrten = new JButton("Irten"), plus = new JButton("+"), btnReload = new JButton("Reload");
@@ -34,11 +36,12 @@ public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
 	private final JButton btnInsert = new JButton("Insert"), btnUpdate = new JButton("Update"),
 			btnDelete = new JButton("Delete");
 
-	public Leiho3LangileKudeaketa_JTABLE() {
+	public Leiho3LangileKudeaketa_EzabatuAldatu() {
 		this.setBounds(350, 50, 600, 600);
 		this.setTitle("6.taldearen langileen kudeaketa");
 		this.setResizable(false); // neurketak ez aldatzeko
 		this.setSize(new Dimension(802, 600));
+		
 		btnIrten.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnIrten.setForeground(Color.BLACK);
 		btnIrten.setBounds(643, 487, 89, 35);
@@ -50,18 +53,18 @@ public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
 		});
 		getContentPane().setLayout(null);
 		getContentPane().add(btnIrten);
+		
 		scrollPane.setBorder(null);
 		scrollPane.setBounds(12, 97, 720, 299);
 		getContentPane().add(scrollPane);
-
 		table = new JTable();
 		table.setBorder(null);
 		taulaFormatua();
 		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
+		
 		lblDepartamentuKudeaketa.setForeground(Color.BLACK);
 		lblDepartamentuKudeaketa.setHorizontalAlignment(SwingConstants.CENTER);
-
 		lblDepartamentuKudeaketa.setBounds(0, 31, 796, 43);
 		lblDepartamentuKudeaketa.setFont(new Font("Tahoma", Font.BOLD, 22));
 		getContentPane().add(lblDepartamentuKudeaketa);
@@ -73,8 +76,6 @@ public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
 		btnKargatuFitxategia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MetodoakLeihoAldaketa.bostgarrenLeihoa();
-				
-
 			}
 		});
 		getContentPane().add(btnKargatuFitxategia);
@@ -82,14 +83,22 @@ public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
 		plus.setForeground(Color.BLACK);
 		plus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				t1.addRow(constante);
+				boolean froga = false;
+				for (int i = 0; i < t1.getColumnCount(); i++) {
+					System.out.println(t1.getValueAt(0,i));
+					if (t1.getValueAt(t1.getRowCount()-1, i) == null)
+						froga = true;
+				}
+				if (!froga)
+					t1.addRow(constante);
+				
 			}
 		});
 		plus.setFont(new Font("Tahoma", Font.BOLD, 11));
 		plus.setBounds(738, 109, 47, 35);
 		getContentPane().add(plus);
+		
 		btnInsert.setForeground(Color.BLACK);
-
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Langilea langile = new Langilea(
@@ -104,8 +113,8 @@ public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
 		});
 		btnInsert.setBounds(113, 409, 89, 23);
 		getContentPane().add(btnInsert);
+		
 		btnUpdate.setForeground(Color.BLACK);
-
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Langilea langile = new Langilea(
@@ -116,12 +125,13 @@ public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
 						t1.getValueAt(table.getSelectedRow(), 4).toString(),
 						t1.getValueAt(table.getSelectedRow(), 5).toString());
 				kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
+				//kontrolatzailea.MetodoakLeihoAldaketa.hirugarrenLeihoaUpdate(langile);
 			}
 		});
 		btnUpdate.setBounds(352, 409, 89, 23);
 		getContentPane().add(btnUpdate);
+		
 		btnDelete.setForeground(Color.BLACK);
-
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Langilea langile = new Langilea(
@@ -136,8 +146,8 @@ public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
 		});
 		btnDelete.setBounds(574, 409, 89, 23);
 		getContentPane().add(btnDelete);
+	
 		btnReload.setForeground(Color.BLACK);
-
 		btnReload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				taulaEzabatu();
@@ -175,9 +185,8 @@ public class Leiho3LangileKudeaketa_JTABLE extends JFrame {
 		}
 	}
 	private void taulaEzabatu() {
-		while (t1.getRowCount() > 0)
-		{
-		t1.removeRow(0);
+		while (t1.getRowCount() > 0) {
+			t1.removeRow(0);
 		}
 		
 	}

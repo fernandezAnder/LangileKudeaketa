@@ -17,20 +17,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import kontrolatzailea.Metodoak;
+import kontrolatzailea.MetodoakBBDD;
 import kontrolatzailea.MetodoakLeihoAldaketa;
 
-public class Leiho3LangileKudeaketa extends JFrame {
+public class Leiho3LangileKudeaketa_Gehitu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNan, txtIzena, txtAbizena, txtArduraduna;
-	private JLabel lblArdura, lblArduraduna, lblNan, lblIzena, lblabizenak, lblDepartamentuKodea, lblDerrigorrezNan, lblSoldata,
-			lblDerrigorrezIzena, lblDerrigorrezAbizenak, lblDerrigorrezDeptKod, lblDerrigorrezArdurana, lblLanarenDatuak, lblLangileDatuak, lblDerrigorrezArdura, lblDerrigorrezSoldata;
+	private JLabel lblArdura, lblArduraduna, lblNan, lblIzena, lblabizenak, lblDepartamentuKodea, lblDerrigorrezNan,
+			lblDerrigorrezIzena, lblDerrigorrezAbizenak, lblDerrigorrezDeptKod, lblDerrigorrezArdurana, lblLanarenDatuak, lblLangileDatuak, lblDerrigorrezArdura;
 	private JComboBox jcbDeptKod, jcbArdura;
 	private JButton btnGorde, btnEzeztatu, btnKargatuFitxategia;
-	private ArrayList<String> ardura;
-	private JTextField txtSoldata;
+	private ArrayList<String> ardura, deptKod;
 
-	public Leiho3LangileKudeaketa() {
+	public Leiho3LangileKudeaketa_Gehitu() {
 		// panelaren propietateak
 //		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\Argazkiak\\logoa.png")); 
 		getContentPane().setLayout(null);
@@ -135,44 +135,20 @@ public class Leiho3LangileKudeaketa extends JFrame {
 			}
 		});
 		getContentPane().add(txtArduraduna);
-		
-		
-		txtSoldata = new JTextField();
-		txtSoldata.setForeground(Color.BLACK);
-		txtSoldata.setColumns(10);
-		txtSoldata.setBounds(262, 362, 124, 27);
-		txtSoldata.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				char letraSoldata = e.getKeyChar();
-				String cadena = letraSoldata + "";
-				if (txtSoldata.getText().length() > 8 || !cadena.matches("[0-9.]"))
-					e.consume(); // ez du godetzen
-			}
-		});
 		txtNan.setColumns(10);
-		getContentPane().add(txtSoldata);
+
 		
-		lblSoldata = new JLabel("Soldata");
-		lblSoldata.setForeground(Color.BLACK);
-		lblSoldata.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblSoldata.setBounds(262, 333, 86, 27);
-		getContentPane().add(lblSoldata);
-
-		ArrayList<String> froga = new ArrayList<String>();
-		froga.add("aaa");
-		froga.add("bbb");
-		froga.add("ccc");
-		froga.add("ddd");
-		froga.add("eee");
-
+		
+		deptKod=MetodoakBBDD.departamentuKodeakAtera();
 		jcbDeptKod = new JComboBox();
-		jcbDeptKod.setFont(new Font("Dialog", Font.PLAIN, 16));
 		jcbDeptKod.setForeground(Color.BLACK);
-		jcbDeptKod.setBounds(41, 288, 159, 33);
-		/* DEPARTAMENTU KODEAK JARRI BEHAR DIRA, EZ froga */
-		for (int i = 0; i < froga.size(); i++)
-			jcbDeptKod.addItem(froga.get(i));
+		jcbDeptKod.setFont(new Font("Dialog", Font.PLAIN, 16));
+		jcbDeptKod.setBounds(42, 286, 159, 33);
+		for (int i = 0; i < deptKod.size(); i++) {
+			jcbDeptKod.addItem(deptKod.get(i)+"");
+		}
 		getContentPane().add(jcbDeptKod);
+
 
 		ardura=Metodoak.arrayListArduraSortu();
 		jcbArdura = new JComboBox();
@@ -215,11 +191,6 @@ public class Leiho3LangileKudeaketa extends JFrame {
 		lblDerrigorrezArdurana.setForeground(Color.RED);
 		lblDerrigorrezArdurana.setBounds(149, 408, 426, 27);
 		getContentPane().add(lblDerrigorrezArdurana);
-		
-		lblDerrigorrezSoldata = new JLabel("*");
-		lblDerrigorrezSoldata.setForeground(Color.RED);
-		lblDerrigorrezSoldata.setBounds(335, 333, 350, 15);
-		getContentPane().add(lblDerrigorrezSoldata);
 
 		lblDerrigorrezArdura = new JLabel("*");
 		lblDerrigorrezArdura.setForeground(Color.RED);
@@ -244,7 +215,7 @@ public class Leiho3LangileKudeaketa extends JFrame {
 					lblDerrigorrezArdurana.setText("*");
 
 				if (txtNan.getText().matches("\\d{8}+[A-Z]{1}") && !txtIzena.getText().matches("[a-zA-Z]")
-						&& txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") && !txtAbizena.getText().matches("[a-zA-Z]") && txtSoldata.getText().matches("[0-9]{1,}+[.,]+[0-9]{2}"))
+						&& txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") && !txtAbizena.getText().matches("[a-zA-Z]"))
 					System.out.println("baaaaiiii"); // llamar metodo subir datos
 			}
 		});
@@ -256,7 +227,7 @@ public class Leiho3LangileKudeaketa extends JFrame {
 		btnEzeztatu = new JButton("Ezeztatu");
 		btnEzeztatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MetodoakLeihoAldaketa.lehenengoLeihoa();
+				MetodoakLeihoAldaketa.bigarrenLeihoaLang();
 				dispose();
 			}
 		});

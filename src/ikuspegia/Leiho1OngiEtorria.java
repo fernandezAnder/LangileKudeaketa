@@ -32,7 +32,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnDepartamentuKudeaketa.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnDepartamentuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MetodoakLeihoAldaketa.bigarrenLeihoa2(); 	
+				MetodoakLeihoAldaketa.bigarrenLeihoaDept(); 	
 				dispose();
 			}
 		});
@@ -44,7 +44,7 @@ public class Leiho1OngiEtorria extends JFrame {
 		btnEnplegatuKudeaketa.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnEnplegatuKudeaketa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MetodoakLeihoAldaketa.hirugarrenLeihoa();
+				MetodoakLeihoAldaketa.bigarrenLeihoaLang();
 				dispose();
 			}
 		});

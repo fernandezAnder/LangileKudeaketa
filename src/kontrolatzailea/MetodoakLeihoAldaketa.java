@@ -13,26 +13,35 @@ public class MetodoakLeihoAldaketa {
 		Leiho1OngiEtorria Leiho1 = new Leiho1OngiEtorria();
 		Leiho1.setVisible(true);
 		
-		lista_langileak = eredua.DbKontsultak.langileTaulaIrakurri();
-		MetodoakLeihoAldaketa.frogaLeihoa();
+		//lista_langileak = eredua.DbKontsultak.langileTaulaIrakurri();
+		//MetodoakLeihoAldaketa.frogaLeihoa();
 		
 		
 	}
 	
-	//bigarrenLeihoa jarri
-	public static void bigarrenLeihoa2() {
-		Leiho3LangileKudeaketa_JTABLE Leiho2 = new Leiho3LangileKudeaketa_JTABLE();
+	public static void bigarrenLeihoaDept() {
+		Leiho2DeptKudeaketa Leiho2 = new Leiho2DeptKudeaketa();
 		Leiho2.setVisible(true);
 	}
 	
-	//hirugarrenLeihoaTable jarri
-	public static void bigarrenLeihoa() {
-		Leiho3LangileKudeaketa_JTABLE Leiho2 = new Leiho3LangileKudeaketa_JTABLE();
+	public static void bigarrenLeihoaLang() {
+		Leiho2LangileKudeaketa Leiho2 = new Leiho2LangileKudeaketa();
 		Leiho2.setVisible(true);
+	}
+	
+	public static void hirugarrenLeihoaGehitu() {
+		Leiho3LangileKudeaketa_Gehitu Leiho3 = new Leiho3LangileKudeaketa_Gehitu();
+		Leiho3.setVisible(true);
+	}
+	
+	public static void hirugarrenLeihoaUpdate(Langilea langile) {
+		Leiho3LangileKudeaketa_Update Leiho3 = new Leiho3LangileKudeaketa_Update(langile);
+		Leiho3.setVisible(true);
 	}
 
-	public static void hirugarrenLeihoa() {
-		Leiho3LangileKudeaketa Leiho3 = new Leiho3LangileKudeaketa();
+	public static void hirugarrenLeihoaEzabatuAldatu() {
+		lista_langileak = MetodoakBBDD.langileTaulaIrakurri();
+		Leiho3LangileKudeaketa_EzabatuAldatu Leiho3 = new Leiho3LangileKudeaketa_EzabatuAldatu();
 		Leiho3.setVisible(true);
 	}
 	
@@ -44,10 +53,6 @@ public class MetodoakLeihoAldaketa {
 		Leiho5FitxKargatu Leiho5 = new Leiho5FitxKargatu();
 		Leiho5.setVisible(true);
 		
-	}
-	public static void frogaLeihoa() {
-		Leiho3LangileKudeaketa_JTABLE froga = new Leiho3LangileKudeaketa_JTABLE();
-		froga.setVisible(true);
 	}
 
 	// Leiho6-ko metodoak

@@ -23,7 +23,7 @@ public class DbKontsultak {
 				abizenak = rs.getString(3);
 				ardura = rs.getString(4);
 				arduraduna = rs.getString(5);
-				departamentua = rs.getString(6);
+				departamentua = rs.getString(7);
 				Langilea langilea = new Langilea(nan, izena, abizenak, ardura, arduraduna, departamentua);
 				lista_langilea.add(langilea);
 				System.out.println(langilea);
@@ -37,6 +37,29 @@ public class DbKontsultak {
 			System.out.println(e.getMessage());
 		}
 		return lista_langilea;
+	}
+	
+	public static ArrayList<String> departamentuKodeakAtera() {
+		ArrayList<String> listaDeptKod = new ArrayList<String>();
+		PreparedStatement s = null;
+		Connection konexioa = Konexioa.getKonexioa();
+
+		try {
+			s = konexioa.prepareStatement("select DISTINCT(DEPART_KOD) from departamentuak");
+			ResultSet rs = s.executeQuery();
+
+			while (rs.next()) {				
+				listaDeptKod.add(rs.getString(1));
+			}
+			s.close(); // PREPAREDSTATEMENT itxi
+			//konexioa.close(); // DATUBASE konexioa itxi.
+
+		} catch (Exception e) {
+			e.getMessage();
+			System.out.println(e.getMessage());
+		}
+		
+		return listaDeptKod;
 	}
 
 	public static void langileTaulaIdatzi(Langilea langile) {

@@ -20,4 +20,8 @@ public class MetodoakBBDD {
 	public static void langileTaulaAldatu(Langilea langile) {
 		eredua.DbKontsultak.langileTaulaAldatu(langile);
 	}
+	//departamentuKodeakAtera
+	public static ArrayList<String> departamentuKodeakAtera() {
+		return eredua.DbKontsultak.departamentuKodeakAtera();
+	}
 }
