@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import kontrolatzailea.Metodoak;
 import kontrolatzailea.MetodoakLeihoAldaketa;
 
-public class Leiho3EnpleKudeaketa extends JFrame {
+public class Leiho2LangileKudeaketa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNan, txtIzena, txtAbizena, txtArduraduna;
@@ -30,7 +30,7 @@ public class Leiho3EnpleKudeaketa extends JFrame {
 	private ArrayList<String> ardura;
 	private JTextField txtSoldata;
 
-	public Leiho3EnpleKudeaketa() {
+	public Leiho2LangileKudeaketa() {
 		// panelaren propietateak
 //		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\Argazkiak\\logoa.png")); 
 		getContentPane().setLayout(null);

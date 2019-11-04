@@ -26,7 +26,7 @@ public class MetodoakLeihoAldaketa {
 	}
 
 	public static void hirugarrenLeihoa() {
-		Leiho3EnpleKudeaketa Leiho3 = new Leiho3EnpleKudeaketa();
+		Leiho2LangileKudeaketa Leiho3 = new Leiho2LangileKudeaketa();
 		Leiho3.setVisible(true);
 	}
 	
