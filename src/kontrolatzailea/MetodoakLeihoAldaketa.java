@@ -18,15 +18,21 @@ public class MetodoakLeihoAldaketa {
 		
 		
 	}
-		
-
+	
+	//bigarrenLeihoa jarri
+	public static void bigarrenLeihoa2() {
+		Leiho3LangileKudeaketa_JTABLE Leiho2 = new Leiho3LangileKudeaketa_JTABLE();
+		Leiho2.setVisible(true);
+	}
+	
+	//hirugarrenLeihoaTable jarri
 	public static void bigarrenLeihoa() {
-		Leiho2LangileKudeaketa_JTABLE Leiho2 = new Leiho2LangileKudeaketa_JTABLE();
+		Leiho3LangileKudeaketa_JTABLE Leiho2 = new Leiho3LangileKudeaketa_JTABLE();
 		Leiho2.setVisible(true);
 	}
 
 	public static void hirugarrenLeihoa() {
-		Leiho2LangileKudeaketa Leiho3 = new Leiho2LangileKudeaketa();
+		Leiho3LangileKudeaketa Leiho3 = new Leiho3LangileKudeaketa();
 		Leiho3.setVisible(true);
 	}
 	
@@ -40,7 +46,7 @@ public class MetodoakLeihoAldaketa {
 		
 	}
 	public static void frogaLeihoa() {
-		Leiho2LangileKudeaketa_JTABLE froga = new Leiho2LangileKudeaketa_JTABLE();
+		Leiho3LangileKudeaketa_JTABLE froga = new Leiho3LangileKudeaketa_JTABLE();
 		froga.setVisible(true);
 	}
 
