@@ -21,7 +21,7 @@ public class MetodoakLeihoAldaketa {
 		
 
 	public static void bigarrenLeihoa() {
-		Leiho2DeptKudeaketa_JTABLE Leiho2 = new Leiho2DeptKudeaketa_JTABLE();
+		Leiho2LangileKudeaketa_JTABLE Leiho2 = new Leiho2LangileKudeaketa_JTABLE();
 		Leiho2.setVisible(true);
 	}
 
@@ -40,7 +40,7 @@ public class MetodoakLeihoAldaketa {
 		
 	}
 	public static void frogaLeihoa() {
-		Leiho2DeptKudeaketa_JTABLE froga = new Leiho2DeptKudeaketa_JTABLE();
+		Leiho2LangileKudeaketa_JTABLE froga = new Leiho2LangileKudeaketa_JTABLE();
 		froga.setVisible(true);
 	}
 

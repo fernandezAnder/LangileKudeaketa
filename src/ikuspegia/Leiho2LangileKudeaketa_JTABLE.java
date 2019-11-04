@@ -21,7 +21,7 @@ import kontrolatzailea.MetodoakLeihoAldaketa;
 import eredua.Langilea;
 import jdk.nashorn.internal.runtime.ListAdapter;
 
-public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
+public class Leiho2LangileKudeaketa_JTABLE extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected static final Vector constante = null;
 	private JButton btnKargatuFitxategia, btnIrten = new JButton("Irten"), plus = new JButton("+"), btnReload = new JButton("Reload");
@@ -34,7 +34,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 	private final JButton btnInsert = new JButton("Insert"), btnUpdate = new JButton("Update"),
 			btnDelete = new JButton("Delete");
 
-	public Leiho2DeptKudeaketa_JTABLE() {
+	public Leiho2LangileKudeaketa_JTABLE() {
 		this.setBounds(350, 50, 600, 600);
 		this.setTitle("6.taldearen langileen kudeaketa");
 		this.setResizable(false); // neurketak ez aldatzeko
@@ -148,6 +148,7 @@ public class Leiho2DeptKudeaketa_JTABLE extends JFrame {
 		});
 		btnReload.setBounds(634, 62, 129, 23);
 		getContentPane().add(btnReload);
+		
 	}
 
 	public void taulaFormatua() {

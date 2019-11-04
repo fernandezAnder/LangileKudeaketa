@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;;
 
 public class DbKontsultak {
+	
 	public static ArrayList<Langilea> langileTaulaIrakurri() {
 		ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
 		PreparedStatement s = null;
@@ -53,7 +54,7 @@ public class DbKontsultak {
 			s.setString(6, langile.getDepartamentu_kod());
 			s.executeUpdate();
 			s.close(); // PREPAREDSTATEMENT itxi
-			konexioa.close(); // DATUBASE konexioa itxi.
+			//konexioa.close(); // DATUBASE konexioa itxi.
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -77,7 +78,7 @@ public class DbKontsultak {
 				s.executeUpdate();
 			}
 			s.close(); // PREPAREDSTATEMENT itxi
-			konexioa.close(); // DATUBASE konexioa itxi.
+			//konexioa.close(); // DATUBASE konexioa itxi.
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -94,7 +95,7 @@ public class DbKontsultak {
 			s.setString(1, langile.getNan());
 			s.executeUpdate();
 			s.close(); // PREPAREDSTATEMENT itxi
-			konexioa.close(); // DATUBASE konexioa itxi.
+			//konexioa.close(); // DATUBASE konexioa itxi.
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -118,7 +119,7 @@ public class DbKontsultak {
 
 			s.executeUpdate();
 			s.close(); // PREPAREDSTATEMENT itxi
-			konexioa.close(); // DATUBASE konexioa itxi.
+			//konexioa.close(); // DATUBASE konexioa itxi.
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
