@@ -132,12 +132,7 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 				String cadena = letraArduraduna + "";
 				if (txtArduraduna.getText().length() > 8 || !cadena.matches("[0-9A-Z]"))
 					e.consume(); // ez du godetzen
-
-				langile.setArduraduna(txtArduraduna.getText()+"");
-
-
-				langile.setArduraduna(txtArduraduna+"");
-				
+				langile.setArduraduna(txtArduraduna.getText()+"");			
 
 			}
 		});
