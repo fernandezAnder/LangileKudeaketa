@@ -133,7 +133,7 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 				if (txtArduraduna.getText().length() > 8 || !cadena.matches("[0-9A-Z]"))
 					e.consume(); // ez du godetzen
 				langile.setArduraduna(txtArduraduna+"");
-
+				
 			}
 		});
 		getContentPane().add(txtArduraduna);
