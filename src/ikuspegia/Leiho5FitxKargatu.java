@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import kontrolatzailea.MetodoakLeihoAldaketa;
 import javax.swing.DefaultComboBoxModel;
@@ -25,29 +26,29 @@ public class Leiho5FitxKargatu extends JFrame {
 	private JButton btnIrten, btnKargatu, button;
 	private JComboBox comboBox;
 	private File fitxategia;
-	
-	public Leiho5FitxKargatu() {	
-		//panelaren propietateak
+
+	public Leiho5FitxKargatu() {
+		// panelaren propietateak
 		getContentPane().setLayout(null);
-		
+
 		lblMenuNagusia = new JLabel("Fitxategia Kargatu\r\n");
 		lblMenuNagusia.setForeground(Color.BLACK);
 		lblMenuNagusia.setFont(new Font("Tahoma", Font.BOLD, 27));
 		lblMenuNagusia.setBounds(30, 31, 472, 49);
 		getContentPane().add(lblMenuNagusia);
-		
+
 		btnIrten = new JButton("Irten");
 		btnIrten.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnIrten.setForeground(Color.BLACK);
 		btnIrten.setBounds(447, 493, 89, 40);
 		getContentPane().add(btnIrten);
-		
+
 		lblMota = new JLabel("Mota: ");
 		lblMota.setForeground(Color.BLACK);
 		lblMota.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblMota.setBounds(38, 154, 55, 23);
 		getContentPane().add(lblMota);
-		
+
 		comboBox = new JComboBox();
 		comboBox.setForeground(Color.BLACK);
 		comboBox.addItem("xml");
@@ -56,33 +57,37 @@ public class Leiho5FitxKargatu extends JFrame {
 		comboBox.setSelectedIndex(0);
 		comboBox.setBounds(103, 157, 73, 20);
 		getContentPane().add(comboBox);
-		
+
 		lblRuta = new JLabel("Ruta: ");
 		lblRuta.setForeground(Color.BLACK);
 		lblRuta.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblRuta.setBounds(38, 207, 55, 23);
 		getContentPane().add(lblRuta);
-		
+
 		textField = new JTextField();
 		textField.setBounds(101, 210, 422, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		btnKargatu = new JButton("Kargatu");
 		btnKargatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if( "xml".equals(comboBox.getSelectedItem().toString())){
+				//ONDO
+				if ("xml".equals(comboBox.getSelectedItem().toString())) {	
+						kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri.irakurriLangileakXMLMet(fitxategia.getAbsolutePath());
+						eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
 				
-					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = eredua.FitxKudeaketaLangilea.irakurriOharrakXML(fitxategia.getAbsolutePath());
+						//C:\Users\admin1\git\LangileKudeaketa\src\fitxategiak\langileak.xml
+				} else if ("csv".equals(comboBox.getSelectedItem().toString())) {
+					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri
+							.irakurriLangileakCSVMet(fitxategia.getAbsolutePath());
 					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
-				}else if ("csv".equals(comboBox.getSelectedItem().toString())) {
-					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = eredua.FitxKudeaketaLangilea.irakurriLangileakCSV(fitxategia.getAbsolutePath());	
+				} else if ("json".equals(comboBox.getSelectedItem().toString())) {
+					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri
+							.irakurriLangileakJSONMet(fitxategia.getAbsolutePath());
 					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
-				}else if("json".equals(comboBox.getSelectedItem().toString())) {
-					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = eredua.FitxKudeaketaLangilea.irakurriOharrakJSON(fitxategia.getAbsolutePath());
-					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
-					
-				}else {
+
+				} else {
 					System.out.println("Erroa Aukerarekin");
 				}
 			}
@@ -91,7 +96,7 @@ public class Leiho5FitxKargatu extends JFrame {
 		btnKargatu.setForeground(Color.BLACK);
 		btnKargatu.setBounds(260, 493, 123, 40);
 		getContentPane().add(btnKargatu);
-		
+
 		button = new JButton("...");
 		button.setForeground(Color.BLACK);
 		button.addActionListener(new ActionListener() {
@@ -106,7 +111,7 @@ public class Leiho5FitxKargatu extends JFrame {
 		});
 		button.setBounds(521, 209, 28, 23);
 		getContentPane().add(button);
-		this.setBounds(350,50,600,600);
+		this.setBounds(350, 50, 600, 600);
 		this.setTitle("6.taldearen langileen kudeaketa");
 		this.setResizable(false); // neurketak ez aldatzeko
 		this.setSize(new Dimension(600, 600));
@@ -115,6 +120,6 @@ public class Leiho5FitxKargatu extends JFrame {
 				System.exit(0);
 			}
 		});
-		
-	}		
+
+	}
 }

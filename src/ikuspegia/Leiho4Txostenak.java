@@ -21,7 +21,7 @@ public class Leiho4Txostenak extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextArea arrayTxtA;
 	private ArrayList<Langilea> ateraLangileak = null;
-	private JButton btnIrten;
+	private JButton btnIrten, btnFitxeroaSortu;
 	private JScrollPane scrollPane;
 	
 	public Leiho4Txostenak() {

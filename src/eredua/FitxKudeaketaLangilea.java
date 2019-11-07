@@ -107,10 +107,9 @@ public class FitxKudeaketaLangilea {
 	}
 
 	// .xml an dauden lerroak arraylist batean sartu
-	public static ArrayList<Langilea> irakurriOharrakXML(String helbidea) {
+	public static ArrayList<Langilea> irakurriLangileakXML(String helbidea) {
 		// bariableak
 		ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
-		File fitxeroa = new File("src/Oharrak.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
 		Document doc = null;
@@ -124,21 +123,20 @@ public class FitxKudeaketaLangilea {
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
 			try {
-				doc = dBuilder.parse(fitxeroa);
+				doc = dBuilder.parse(helbidea);
 				doc.getDocumentElement().normalize();
-				NodeList lista = doc.getElementsByTagName("langilea");
+				NodeList lista = doc.getElementsByTagName("LANGILEAK");
 
 				for (int temp = 0; temp < lista.getLength(); temp++) {
 					Node nNode = lista.item(temp);
 					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 						Element eElement = (Element) nNode;
-						nan = eElement.getElementsByTagName("nan").item(0).getTextContent();
-						izena = eElement.getElementsByTagName("izena").item(0).getTextContent();
-						abizenak = eElement.getElementsByTagName("abizenak").item(0).getTextContent();
-						ardura = eElement.getElementsByTagName("ardura").item(0).getTextContent();
-						arduraduna = eElement.getElementsByTagName("arduraduna").item(0).getTextContent();
-						departamentuak_depart_kod = eElement.getElementsByTagName("departamentuak_depart_kod").item(0)
-								.getTextContent();
+						nan = eElement.getElementsByTagName("NAN").item(0).getTextContent();
+						izena = eElement.getElementsByTagName("IZENA").item(0).getTextContent();
+						abizenak = eElement.getElementsByTagName("ABIZENAK").item(0).getTextContent();
+						ardura = eElement.getElementsByTagName("ARDURA").item(0).getTextContent();
+						arduraduna = eElement.getElementsByTagName("ARDURADUNA").item(0).getTextContent();
+						departamentuak_depart_kod = eElement.getElementsByTagName("DEPARTAMENTUAK_DEPART_KOD").item(0).getTextContent();
 						Langilea oharra = new Langilea(nan, izena, abizenak, ardura, arduraduna,
 								departamentuak_depart_kod);
 						lista_langilea.add(oharra);
@@ -157,10 +155,8 @@ public class FitxKudeaketaLangilea {
 	}
 
 	// .xml aren amaieran idazten du.
-	public static int idatziOharrakXML(ArrayList<Langilea> lista_langileak,String helbidea) {
+	public static int idatziLangileakXML(ArrayList<Langilea> lista_langileak,String helbidea) {
 		int idatzita = 0;
-
-			
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = null;
@@ -178,29 +174,29 @@ public class FitxKudeaketaLangilea {
 
 		try {
 			for (int i = 0; i < lista_langileak.size(); i++) {
-				Element row = ficheroXML.createElement("langilea");
+				Element row = ficheroXML.createElement("LANGILEAK");
 
-				Element nan = ficheroXML.createElement("nan");
+				Element nan = ficheroXML.createElement("NAN");
 				Text nantext = ficheroXML.createTextNode(lista_langileak.get(i).getNan() + "\n");
 				nan.appendChild(nantext);
 				row.appendChild(nan);
 
-				Element abizenak = ficheroXML.createElement("abizenak");
+				Element abizenak = ficheroXML.createElement("ABIZENAK");
 				Text abizenaktext = ficheroXML.createTextNode(lista_langileak.get(i).getAbizenak() + "\n");
 				abizenak.appendChild(abizenaktext);
 				row.appendChild(abizenak);
 
-				Element ardura = ficheroXML.createElement("ardura");
+				Element ardura = ficheroXML.createElement("ARDURA");
 				Text arduratext = ficheroXML.createTextNode(lista_langileak.get(i).getArdura() + "\n");
 				ardura.appendChild(arduratext);
 				row.appendChild(ardura);
 
-				Element arduraduna = ficheroXML.createElement("arduraduna");
+				Element arduraduna = ficheroXML.createElement("ARDURADUNA");
 				Text arduradunatext = ficheroXML.createTextNode(lista_langileak.get(i).getArduraduna() + "\n");
 				arduraduna.appendChild(arduradunatext);
 				row.appendChild(arduraduna);
 
-				Element departamentuak_depart_kod = ficheroXML.createElement("departamentuak_depart_kod");
+				Element departamentuak_depart_kod = ficheroXML.createElement("DEPARTAMENTUAK_DEPART_KOD");
 				Text departamentuak_depart_kodtext = ficheroXML
 						.createTextNode(lista_langileak.get(i).getDepartamentu_kod() + "\n");
 				departamentuak_depart_kod.appendChild(departamentuak_depart_kodtext);
@@ -210,13 +206,14 @@ public class FitxKudeaketaLangilea {
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 
 		}
 
 		ficheroXML.normalizeDocument();
 
 		Source source = new DOMSource(ficheroXML);
-		Result result = new StreamResult(new File("src/Oharrak.xml"));
+		Result result = new StreamResult(new File(helbidea));
 		Transformer transformer = null;
 		try {
 			transformer = TransformerFactory.newInstance().newTransformer();
@@ -232,7 +229,7 @@ public class FitxKudeaketaLangilea {
 	}
 
 	// .json an dauden lerroak arraylist batean sartu
-	public static ArrayList<Langilea> irakurriOharrakJSON(String helbidea) {
+	public static ArrayList<Langilea> irakurriLangileakJSON(String helbidea) {
 		ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
 		File fitxeroa = new File(helbidea);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -246,18 +243,18 @@ public class FitxKudeaketaLangilea {
 			try {
 				doc = dBuilder.parse(fitxeroa);
 				doc.getDocumentElement().normalize();
-				NodeList lista = doc.getElementsByTagName("row");
+				NodeList lista = doc.getElementsByTagName("LANGILEAK");
 
 				for (int temp = 0; temp < lista.getLength(); temp++) {
 					Node nNode = lista.item(temp);
 					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 						Element eElement = (Element) nNode;
-						nan = eElement.getElementsByTagName("nan").item(0).getTextContent();
-						izena = eElement.getElementsByTagName("izena").item(0).getTextContent();
-						abizenak = eElement.getElementsByTagName("abizenak").item(0).getTextContent();
-						ardura = eElement.getElementsByTagName("ardura").item(0).getTextContent();
-						arduraduna = eElement.getElementsByTagName("arduraduna").item(0).getTextContent();
-						departamentu_kod = eElement.getElementsByTagName("departamentu_kod").item(0).getTextContent();
+						nan = eElement.getElementsByTagName("NAN").item(0).getTextContent();
+						izena = eElement.getElementsByTagName("IZENA").item(0).getTextContent();
+						abizenak = eElement.getElementsByTagName("ABIZENAK").item(0).getTextContent();
+						ardura = eElement.getElementsByTagName("ARDURA").item(0).getTextContent();
+						arduraduna = eElement.getElementsByTagName("ARDURADUNA").item(0).getTextContent();
+						departamentu_kod = eElement.getElementsByTagName("DEPARTAMENTUAK_DEPART_KOD").item(0).getTextContent();
 						Langilea langilea = new Langilea(nan, izena, abizenak, ardura, arduraduna, departamentu_kod);
 						lista_langilea.add(langilea);
 					}
@@ -275,7 +272,7 @@ public class FitxKudeaketaLangilea {
 	}
 
 	// .xml aren amaieran idazten du.
-	public static int idatziOharrak(ArrayList<Langilea> lista_langileak,String helbidea) {
+	public static int idatziLangileak(ArrayList<Langilea> lista_langileak,String helbidea) {
 		int idatzita = 0;
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -294,34 +291,34 @@ public class FitxKudeaketaLangilea {
 
 		try {
 			for (int i = 0; i < lista_langileak.size(); i++) {
-				Element row = ficheroXML.createElement("langilea");
+				Element row = ficheroXML.createElement("LANGILEAK");
 
-				Element nan = ficheroXML.createElement("nan");
+				Element nan = ficheroXML.createElement("NAN");
 				Text nanText = ficheroXML.createTextNode(lista_langileak.get(i).getNan() + "\n");
 				nan.appendChild(nanText);
 				row.appendChild(nan);
 
-				Element izena = ficheroXML.createElement("izena");
+				Element izena = ficheroXML.createElement("IZENA");
 				Text izenaText = ficheroXML.createTextNode(lista_langileak.get(i).getIzena() + "\n");
 				izena.appendChild(izenaText);
 				row.appendChild(izena);
 
-				Element abizenak = ficheroXML.createElement("abizenak");
+				Element abizenak = ficheroXML.createElement("ABIZENAK");
 				Text abizenakText = ficheroXML.createTextNode(lista_langileak.get(i).getAbizenak() + "\n");
 				abizenak.appendChild(abizenakText);
 				row.appendChild(abizenak);
 
-				Element ardura = ficheroXML.createElement("ardura");
+				Element ardura = ficheroXML.createElement("ARDURA");
 				Text arduraText = ficheroXML.createTextNode(lista_langileak.get(i).getArdura() + "\n");
 				ardura.appendChild(arduraText);
 				row.appendChild(ardura);
 
-				Element arduraduna = ficheroXML.createElement("arduraduna");
+				Element arduraduna = ficheroXML.createElement("ARDURADUNA");
 				Text arduradunaText = ficheroXML.createTextNode(lista_langileak.get(i).getArduraduna() + "\n");
 				arduraduna.appendChild(arduradunaText);
 				row.appendChild(arduraduna);
 
-				Element departamentu_kod = ficheroXML.createElement("departamentu_kod");
+				Element departamentu_kod = ficheroXML.createElement("DEPARTAMENTUAK_DEPART_KOD");
 				Text departamentu_kodText = ficheroXML.createTextNode(lista_langileak.get(i).getDepartamentu_kod() + "\n");
 				departamentu_kod.appendChild(departamentu_kodText);
 				row.appendChild(departamentu_kod);
