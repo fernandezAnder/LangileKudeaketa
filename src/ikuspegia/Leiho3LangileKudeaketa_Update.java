@@ -75,7 +75,7 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 			public void keyTyped(KeyEvent e) {
 				char letraIzena = e.getKeyChar();
 				String cadena = letraIzena + "";
-				if (txtIzena.getText().length() > 45 || !cadena.matches("[a-zA-Z]"))
+				if (txtIzena.getText().length() > 45 || !cadena.matches("[a-zA-Z ]"))
 					e.consume(); // ez du godetzen
 				langile.setIzena(txtIzena+"");
 			}
@@ -97,7 +97,7 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 			public void keyTyped(KeyEvent e) {
 				char letraAbizena = e.getKeyChar();
 				String cadena = letraAbizena + "";
-				if (txtAbizena.getText().length() > 45 || !cadena.matches("[a-zA-Z]"))
+				if (txtAbizena.getText().length() > 45 || !cadena.matches("[a-zA-Z ]"))
 					e.consume(); // ez du godetzen
 				langile.setAbizenak(txtAbizena+"");
 
@@ -221,8 +221,8 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 				else
 					lblDerrigorrezArdurana.setText("*");
 
-				if (txtNan.getText().matches("\\d{8}+[A-Z]{1}") && !txtIzena.getText().matches("[a-zA-Z]")
-						&& (txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") || txtArduraduna.getText().matches("") ) && !txtAbizena.getText().matches("[a-zA-Z]")) {
+				if (txtNan.getText().matches("\\d{8}+[A-Z]{1}") && !txtIzena.getText().matches("[a-zA-Z ]")
+						&& (txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") || txtArduraduna.getText().matches("") ) && !txtAbizena.getText().matches("[a-zA-Z ]")) {
 					kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
 					JOptionPane.showMessageDialog(null, "Lerroa ondo aldatu da", "SQL Update Message", 0);
 					dispose();}

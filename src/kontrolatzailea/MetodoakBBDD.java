@@ -24,4 +24,9 @@ public class MetodoakBBDD {
 	public static ArrayList<String> departamentuKodeakAtera() {
 		return eredua.DbKontsultak.departamentuKodeakAtera();
 	}
+	
+	//fitxeroentzako datuak
+	public static void multiLangileTaulaIdatzi() {
+		eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
+	}
 }

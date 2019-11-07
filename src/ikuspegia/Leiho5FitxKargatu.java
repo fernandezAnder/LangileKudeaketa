@@ -21,16 +21,20 @@ import javax.swing.DefaultComboBoxModel;
 
 public class Leiho5FitxKargatu extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	private JTextField txtHelbidea;
 	private JLabel lblMenuNagusia, lblMota, lblRuta;
-	private JButton btnIrten, btnKargatu, button;
+	private JButton btnIrten, btnKargatu, btnHelbidea;
 	private JComboBox comboBox;
 	private File fitxategia;
 
 	public Leiho5FitxKargatu() {
 		// panelaren propietateak
 		getContentPane().setLayout(null);
-
+		this.setBounds(350, 50, 600, 600);
+		this.setTitle("6.taldearen langileen kudeaketa");
+		this.setResizable(false); // neurketak ez aldatzeko
+		this.setSize(new Dimension(600, 600));
+		
 		lblMenuNagusia = new JLabel("Fitxategia Kargatu\r\n");
 		lblMenuNagusia.setForeground(Color.BLACK);
 		lblMenuNagusia.setFont(new Font("Tahoma", Font.BOLD, 27));
@@ -64,29 +68,32 @@ public class Leiho5FitxKargatu extends JFrame {
 		lblRuta.setBounds(38, 207, 55, 23);
 		getContentPane().add(lblRuta);
 
-		textField = new JTextField();
-		textField.setBounds(101, 210, 422, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		txtHelbidea = new JTextField();
+		txtHelbidea.setBounds(101, 210, 422, 20);
+		getContentPane().add(txtHelbidea);
+		txtHelbidea.setColumns(10);
 
 		btnKargatu = new JButton("Kargatu");
 		btnKargatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ONDO
-				if ("xml".equals(comboBox.getSelectedItem().toString())) {	
-						kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri.irakurriLangileakXMLMet(fitxategia.getAbsolutePath());
-						eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
-				
-						//C:\Users\admin1\git\LangileKudeaketa\src\fitxategiak\langileak.xml
+				// MIRAR
+				// ROCIO CASA --> D:\DAM2\AccesoADatos\git\LangileKudeaketa\LangileKudeaketa\src\fitxategiak\langileak.csv
+				// ANDER CLASE -->  C:\Users\admin1\git\LangileKudeaketa\src\fitxategiak\langileak.xml
+				if ("xml".equals(comboBox.getSelectedItem().toString())) {
+					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri
+							.irakurriLangileakXMLMet(txtHelbidea + "");
+					kontrolatzailea.MetodoakBBDD.multiLangileTaulaIdatzi();
+					
 				} else if ("csv".equals(comboBox.getSelectedItem().toString())) {
 					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri
-							.irakurriLangileakCSVMet(fitxategia.getAbsolutePath());
-					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
+							.irakurriLangileakCSVMet(txtHelbidea + "");
+					kontrolatzailea.MetodoakBBDD.multiLangileTaulaIdatzi();
+					
 				} else if ("json".equals(comboBox.getSelectedItem().toString())) {
 					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri
-							.irakurriLangileakJSONMet(fitxategia.getAbsolutePath());
-					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
-
+							.irakurriLangileakJSONMet(txtHelbidea + "");
+					kontrolatzailea.MetodoakBBDD.multiLangileTaulaIdatzi();
+					
 				} else {
 					System.out.println("Erroa Aukerarekin");
 				}
@@ -97,24 +104,21 @@ public class Leiho5FitxKargatu extends JFrame {
 		btnKargatu.setBounds(260, 493, 123, 40);
 		getContentPane().add(btnKargatu);
 
-		button = new JButton("...");
-		button.setForeground(Color.BLACK);
-		button.addActionListener(new ActionListener() {
+		btnHelbidea = new JButton("...");
+		btnHelbidea.setForeground(Color.BLACK);
+		btnHelbidea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jf = new JFileChooser();
-				jf.showOpenDialog(button);
+				jf.showOpenDialog(btnHelbidea);
 				fitxategia = jf.getSelectedFile();
 				if (fitxategia != null) {
-					textField.setText(fitxategia.getAbsolutePath());
+					txtHelbidea.setText(fitxategia.getAbsolutePath());
 				}
 			}
 		});
-		button.setBounds(521, 209, 28, 23);
-		getContentPane().add(button);
-		this.setBounds(350, 50, 600, 600);
-		this.setTitle("6.taldearen langileen kudeaketa");
-		this.setResizable(false); // neurketak ez aldatzeko
-		this.setSize(new Dimension(600, 600));
+		btnHelbidea.setBounds(521, 209, 28, 23);
+		getContentPane().add(btnHelbidea);
+		
 		btnIrten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
