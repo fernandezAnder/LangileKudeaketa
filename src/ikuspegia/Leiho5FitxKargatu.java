@@ -73,12 +73,14 @@ public class Leiho5FitxKargatu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if( "xml".equals(comboBox.getSelectedItem().toString())){
 				
-					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = eredua.FitxKudeaketaLangilea.irakurriOharrakXML();
+					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = eredua.FitxKudeaketaLangilea.irakurriOharrakXML(fitxategia.getAbsolutePath());
 					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
 				}else if ("csv".equals(comboBox.getSelectedItem().toString())) {
 					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = eredua.FitxKudeaketaLangilea.irakurriLangileakCSV(fitxategia.getAbsolutePath());	
 					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
 				}else if("json".equals(comboBox.getSelectedItem().toString())) {
+					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = eredua.FitxKudeaketaLangilea.irakurriOharrakJSON(fitxategia.getAbsolutePath());
+					eredua.DbKontsultak.multiLangileTaulaIdatzi(kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak);
 					
 				}else {
 					System.out.println("Erroa Aukerarekin");

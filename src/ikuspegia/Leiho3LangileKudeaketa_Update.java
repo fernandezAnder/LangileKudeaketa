@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import eredua.Langilea;
@@ -132,6 +133,9 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 				String cadena = letraArduraduna + "";
 				if (txtArduraduna.getText().length() > 8 || !cadena.matches("[0-9A-Z]"))
 					e.consume(); // ez du godetzen
+				if (cadena.matches("[a-z]")) {
+				JOptionPane.showMessageDialog(null, "Letra larria sartu behar da", "Errorea", 0);
+				}
 				langile.setArduraduna(txtArduraduna.getText()+"");			
 
 			}
@@ -212,14 +216,16 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 				else
 					lblDerrigorrezNan.setText("*");
 				
-				if (!txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") || !txtArduraduna.getText().matches("") )
+				if (!txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") || txtArduraduna.getText().matches("") )
 					lblDerrigorrezArdurana.setText("* Lehenengo 8 karaktereak zenbakiak eta azkena letra larria");
 				else
 					lblDerrigorrezArdurana.setText("*");
 
 				if (txtNan.getText().matches("\\d{8}+[A-Z]{1}") && !txtIzena.getText().matches("[a-zA-Z]")
-						&& (txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") || txtArduraduna.getText().matches("") ) && !txtAbizena.getText().matches("[a-zA-Z]"))
+						&& (txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") || txtArduraduna.getText().matches("") ) && !txtAbizena.getText().matches("[a-zA-Z]")) {
 					kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
+					JOptionPane.showMessageDialog(null, "Lerroa ondo aldatu da", "SQL Update Message", 0);
+					dispose();}
 			}
 		});
 		btnGorde.setFont(new Font("Dialog", Font.BOLD, 16));

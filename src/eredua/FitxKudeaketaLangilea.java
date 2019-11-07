@@ -83,9 +83,9 @@ public class FitxKudeaketaLangilea {
 	}
 
 	// .csv aren amaieran idazten du.
-	public static int idatziLangileakCSV(ArrayList<Langilea> lista_langileak) {
+	public static int idatziLangileakCSV(ArrayList<Langilea> lista_langileak,String helbidea) {
 		int idatzita = 0;
-		File d = new File("src/fitxategiak/langileak.csv");
+		File d = new File(helbidea);
 		FileWriter fw;
 		BufferedWriter bw;
 		try {
@@ -107,7 +107,7 @@ public class FitxKudeaketaLangilea {
 	}
 
 	// .xml an dauden lerroak arraylist batean sartu
-	public static ArrayList<Langilea> irakurriOharrakXML() {
+	public static ArrayList<Langilea> irakurriOharrakXML(String helbidea) {
 		// bariableak
 		ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
 		File fitxeroa = new File("src/Oharrak.xml");
@@ -157,13 +157,10 @@ public class FitxKudeaketaLangilea {
 	}
 
 	// .xml aren amaieran idazten du.
-	public static int idatziOharrakXML(Langilea langilea) {
+	public static int idatziOharrakXML(ArrayList<Langilea> lista_langileak,String helbidea) {
 		int idatzita = 0;
 
-		ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
-
-		lista_langilea = irakurriOharrakXML();
-		lista_langilea.add(langilea);
+			
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = null;
@@ -180,32 +177,32 @@ public class FitxKudeaketaLangilea {
 		Element raiz = ficheroXML.getDocumentElement();
 
 		try {
-			for (int i = 0; i < lista_langilea.size(); i++) {
+			for (int i = 0; i < lista_langileak.size(); i++) {
 				Element row = ficheroXML.createElement("langilea");
 
 				Element nan = ficheroXML.createElement("nan");
-				Text nantext = ficheroXML.createTextNode(lista_langilea.get(i).getNan() + "\n");
+				Text nantext = ficheroXML.createTextNode(lista_langileak.get(i).getNan() + "\n");
 				nan.appendChild(nantext);
 				row.appendChild(nan);
 
 				Element abizenak = ficheroXML.createElement("abizenak");
-				Text abizenaktext = ficheroXML.createTextNode(lista_langilea.get(i).getAbizenak() + "\n");
+				Text abizenaktext = ficheroXML.createTextNode(lista_langileak.get(i).getAbizenak() + "\n");
 				abizenak.appendChild(abizenaktext);
 				row.appendChild(abizenak);
 
 				Element ardura = ficheroXML.createElement("ardura");
-				Text arduratext = ficheroXML.createTextNode(lista_langilea.get(i).getArdura() + "\n");
+				Text arduratext = ficheroXML.createTextNode(lista_langileak.get(i).getArdura() + "\n");
 				ardura.appendChild(arduratext);
 				row.appendChild(ardura);
 
 				Element arduraduna = ficheroXML.createElement("arduraduna");
-				Text arduradunatext = ficheroXML.createTextNode(lista_langilea.get(i).getArduraduna() + "\n");
+				Text arduradunatext = ficheroXML.createTextNode(lista_langileak.get(i).getArduraduna() + "\n");
 				arduraduna.appendChild(arduradunatext);
 				row.appendChild(arduraduna);
 
 				Element departamentuak_depart_kod = ficheroXML.createElement("departamentuak_depart_kod");
 				Text departamentuak_depart_kodtext = ficheroXML
-						.createTextNode(lista_langilea.get(i).getDepartamentu_kod() + "\n");
+						.createTextNode(lista_langileak.get(i).getDepartamentu_kod() + "\n");
 				departamentuak_depart_kod.appendChild(departamentuak_depart_kodtext);
 				row.appendChild(departamentuak_depart_kod);
 
@@ -278,13 +275,8 @@ public class FitxKudeaketaLangilea {
 	}
 
 	// .xml aren amaieran idazten du.
-	public static int idatziOharrak(Langilea langilea, String helbidea) {
+	public static int idatziOharrak(ArrayList<Langilea> lista_langileak,String helbidea) {
 		int idatzita = 0;
-
-		ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
-
-		lista_langilea = irakurriOharrakJSON(helbidea);
-		lista_langilea.add(langilea);
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = null;
@@ -301,36 +293,36 @@ public class FitxKudeaketaLangilea {
 		Element raiz = ficheroXML.getDocumentElement();
 
 		try {
-			for (int i = 0; i < lista_langilea.size(); i++) {
+			for (int i = 0; i < lista_langileak.size(); i++) {
 				Element row = ficheroXML.createElement("langilea");
 
 				Element nan = ficheroXML.createElement("nan");
-				Text nanText = ficheroXML.createTextNode(lista_langilea.get(i).getNan() + "\n");
+				Text nanText = ficheroXML.createTextNode(lista_langileak.get(i).getNan() + "\n");
 				nan.appendChild(nanText);
 				row.appendChild(nan);
 
 				Element izena = ficheroXML.createElement("izena");
-				Text izenaText = ficheroXML.createTextNode(lista_langilea.get(i).getIzena() + "\n");
+				Text izenaText = ficheroXML.createTextNode(lista_langileak.get(i).getIzena() + "\n");
 				izena.appendChild(izenaText);
 				row.appendChild(izena);
 
 				Element abizenak = ficheroXML.createElement("abizenak");
-				Text abizenakText = ficheroXML.createTextNode(lista_langilea.get(i).getAbizenak() + "\n");
+				Text abizenakText = ficheroXML.createTextNode(lista_langileak.get(i).getAbizenak() + "\n");
 				abizenak.appendChild(abizenakText);
 				row.appendChild(abizenak);
 
 				Element ardura = ficheroXML.createElement("ardura");
-				Text arduraText = ficheroXML.createTextNode(lista_langilea.get(i).getArdura() + "\n");
+				Text arduraText = ficheroXML.createTextNode(lista_langileak.get(i).getArdura() + "\n");
 				ardura.appendChild(arduraText);
 				row.appendChild(ardura);
 
 				Element arduraduna = ficheroXML.createElement("arduraduna");
-				Text arduradunaText = ficheroXML.createTextNode(lista_langilea.get(i).getArduraduna() + "\n");
+				Text arduradunaText = ficheroXML.createTextNode(lista_langileak.get(i).getArduraduna() + "\n");
 				arduraduna.appendChild(arduradunaText);
 				row.appendChild(arduraduna);
 
 				Element departamentu_kod = ficheroXML.createElement("departamentu_kod");
-				Text departamentu_kodText = ficheroXML.createTextNode(lista_langilea.get(i).getDepartamentu_kod() + "\n");
+				Text departamentu_kodText = ficheroXML.createTextNode(lista_langileak.get(i).getDepartamentu_kod() + "\n");
 				departamentu_kod.appendChild(departamentu_kodText);
 				row.appendChild(departamentu_kod);
 
