@@ -25,6 +25,7 @@ public class MetodoakLeihoAldaketa {
 	}
 	
 	public static void bigarrenLeihoaLang() {
+		lista_langileak = MetodoakBBDD.langileTaulaIrakurri();
 		Leiho2LangileKudeaketa Leiho2 = new Leiho2LangileKudeaketa();
 		Leiho2.setVisible(true);
 	}
@@ -39,11 +40,10 @@ public class MetodoakLeihoAldaketa {
 		Leiho3.setVisible(true);
 	}
 
-	public static void hirugarrenLeihoaEzabatuAldatu() {
-		lista_langileak = MetodoakBBDD.langileTaulaIrakurri();
-		Leiho3LangileKudeaketa_EzabatuAldatu Leiho3 = new Leiho3LangileKudeaketa_EzabatuAldatu();
+	/*public static void hirugarrenLeihoaEzabatuAldatu() {
+		Leiho2LangileKudeaketa Leiho3 = new Leiho2LangileKudeaketa();
 		Leiho3.setVisible(true);
-	}
+	}*/
 	
 	public static void laugarrenLeihoa() {
 		Leiho4Txostenak Leiho4 = new Leiho4Txostenak();

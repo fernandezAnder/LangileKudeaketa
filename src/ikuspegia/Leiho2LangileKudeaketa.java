@@ -1,92 +1,195 @@
 package ikuspegia;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
-import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 import kontrolatzailea.MetodoakLeihoAldaketa;
+import eredua.Langilea;
+import jdk.nashorn.internal.runtime.ListAdapter;
 
 public class Leiho2LangileKudeaketa extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JButton btnEzabatuAldatuLangilea, btnGehituLangilea, btnMenuNagusia;
-	private JLabel lblLangileKudeaketa;
-	private JLabel asteriskoak1, asteriskoak2;
+	protected static final Vector constante = null;
+	private JButton btnKargatuFitxategia, btnIrten = new JButton("Irten"), plus = new JButton("+"), btnReload = new JButton("Reload");
+	private JTable table;
+	private JLabel lblDepartamentuKudeaketa = new JLabel("Langile Kudeaketa");
+	private JScrollPane scrollPane = new JScrollPane();
+	private DefaultTableModel t1 = new DefaultTableModel();
+	private String[] columnas = new String[6];
+	
+	private final JButton btnInsert = new JButton("Insert"), btnUpdate = new JButton("Update"),
+			btnDelete = new JButton("Delete");
 
 	public Leiho2LangileKudeaketa() {
-
-		// panelaren propietateak
-		getContentPane().setLayout(null);
 		this.setBounds(350, 50, 600, 600);
 		this.setTitle("6.taldearen langileen kudeaketa");
 		this.setResizable(false); // neurketak ez aldatzeko
-		this.setSize(new Dimension(600, 600));
+		this.setSize(new Dimension(802, 600));
+		
+		btnIrten.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnIrten.setForeground(Color.BLACK);
+		btnIrten.setBounds(643, 487, 89, 35);
 
-		btnEzabatuAldatuLangilea = new JButton("EZABATU EDO ALDATU LANGILEA");
-		btnEzabatuAldatuLangilea.setBackground(Color.LIGHT_GRAY);
-		btnEzabatuAldatuLangilea.setForeground(Color.BLACK);
-		btnEzabatuAldatuLangilea.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnEzabatuAldatuLangilea.addActionListener(new ActionListener() {
+		btnIrten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				kontrolatzailea.MetodoakLeihoAldaketa.hirugarrenLeihoaEzabatuAldatu();
-				dispose();
+				MetodoakLeihoAldaketa.lehenengoLeihoa();
 			}
 		});
-		btnEzabatuAldatuLangilea.setBounds(148, 291, 306, 67);
-		getContentPane().add(btnEzabatuAldatuLangilea);
+		getContentPane().setLayout(null);
+		getContentPane().add(btnIrten);
+		
+		scrollPane.setBorder(null);
+		scrollPane.setBounds(12, 97, 720, 299);
+		getContentPane().add(scrollPane);
+		table = new JTable();
+		table.setBorder(null);
+		taulaFormatua();
+		table.getTableHeader().setReorderingAllowed(false);
+		scrollPane.setViewportView(table);
+		
+		lblDepartamentuKudeaketa.setForeground(Color.BLACK);
+		lblDepartamentuKudeaketa.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDepartamentuKudeaketa.setBounds(0, 31, 796, 43);
+		lblDepartamentuKudeaketa.setFont(new Font("Tahoma", Font.BOLD, 22));
+		getContentPane().add(lblDepartamentuKudeaketa);
 
-		btnGehituLangilea = new JButton("GEHITU LANGILEA");
-		btnGehituLangilea.setBackground(Color.LIGHT_GRAY);
-		btnGehituLangilea.setForeground(Color.BLACK);
-		btnGehituLangilea.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnGehituLangilea.addActionListener(new ActionListener() {
+		btnKargatuFitxategia = new JButton("Kargatu fitxategia");
+		btnKargatuFitxategia.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnKargatuFitxategia.setForeground(Color.BLACK);
+		btnKargatuFitxategia.setBounds(62, 487, 188, 35);
+		btnKargatuFitxategia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MetodoakLeihoAldaketa.bostgarrenLeihoa();
+			}
+		});
+		getContentPane().add(btnKargatuFitxategia);
+
+		plus.setForeground(Color.BLACK);
+		plus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean froga = false;
+				for (int i = 0; i < t1.getColumnCount(); i++) {
+					System.out.println(t1.getValueAt(0,i));
+					if (t1.getValueAt(t1.getRowCount()-1, i) == null)
+						froga = true;
+				}
+				if (!froga)
+					t1.addRow(constante);
+				
+			}
+		});
+		plus.setFont(new Font("Tahoma", Font.BOLD, 11));
+		plus.setBounds(738, 109, 47, 35);
+		getContentPane().add(plus);
+		
+		btnInsert.setForeground(Color.BLACK);
+		btnInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*Langilea langile = new Langilea(
+						t1.getValueAt(table.getSelectedRow(), 0).toString(),
+						t1.getValueAt(table.getSelectedRow(), 1).toString(),
+						t1.getValueAt(table.getSelectedRow(), 2).toString(),
+						t1.getValueAt(table.getSelectedRow(), 3).toString(),
+						t1.getValueAt(table.getSelectedRow(), 4).toString(),			
+						t1.getValueAt(table.getSelectedRow(), 5).toString());
+				*/
+				//kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
 				kontrolatzailea.MetodoakLeihoAldaketa.hirugarrenLeihoaGehitu();
-				dispose();
 			}
 		});
-		btnGehituLangilea.setBounds(148, 174, 306, 67);
-		getContentPane().add(btnGehituLangilea);
-
-		lblLangileKudeaketa = new JLabel("LANGILE KUDEAKETA");
-		lblLangileKudeaketa.setForeground(Color.BLACK);
-		lblLangileKudeaketa.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLangileKudeaketa.setFont(new Font("Tahoma", Font.ITALIC, 27));
-		lblLangileKudeaketa.setBounds(0, 49, 600, 66);
-		getContentPane().add(lblLangileKudeaketa);
-
-		btnMenuNagusia = new JButton("Menu nagusira joan");
-		btnMenuNagusia.setBackground(Color.LIGHT_GRAY);
-		btnMenuNagusia.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnMenuNagusia.setForeground(Color.BLACK);
-		btnMenuNagusia.setBounds(148, 406, 306, 67);
-		btnMenuNagusia.addActionListener(new ActionListener() {
+		btnInsert.setBounds(113, 409, 89, 23);
+		getContentPane().add(btnInsert);
+		
+		btnUpdate.setForeground(Color.BLACK);
+		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				kontrolatzailea.MetodoakLeihoAldaketa.lehenengoLeihoa();
-				dispose();
+				Langilea langile = new Langilea(
+						t1.getValueAt(table.getSelectedRow(), 0).toString(),
+						t1.getValueAt(table.getSelectedRow(), 1).toString(),
+						t1.getValueAt(table.getSelectedRow(), 2).toString(),
+						t1.getValueAt(table.getSelectedRow(), 3).toString(),
+						t1.getValueAt(table.getSelectedRow(), 4).toString(),
+						t1.getValueAt(table.getSelectedRow(), 5).toString());
+			//	kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
+				kontrolatzailea.MetodoakLeihoAldaketa.hirugarrenLeihoaUpdate(langile);
 			}
 		});
-		getContentPane().add(btnMenuNagusia);
+		btnUpdate.setBounds(352, 409, 89, 23);
+		getContentPane().add(btnUpdate);
 		
-		asteriskoak2 = new JLabel("*********************************************************");
-		asteriskoak2.setHorizontalAlignment(SwingConstants.CENTER);
-		asteriskoak2.setForeground(Color.BLACK);
-		asteriskoak2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		asteriskoak2.setBounds(0, 92, 600, 66);
-		getContentPane().add(asteriskoak2);
+		btnDelete.setForeground(Color.BLACK);
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Langilea langile = new Langilea(
+						t1.getValueAt(table.getSelectedRow(), 0).toString(),
+						t1.getValueAt(table.getSelectedRow(), 1).toString(),
+						t1.getValueAt(table.getSelectedRow(), 2).toString(),
+						t1.getValueAt(table.getSelectedRow(), 3).toString(),
+						t1.getValueAt(table.getSelectedRow(), 4).toString(),
+						t1.getValueAt(table.getSelectedRow(), 5).toString());
+				kontrolatzailea.MetodoakBBDD.langileTaulaEzabatu(langile);
+			}
+		});
+		btnDelete.setBounds(574, 409, 89, 23);
+		getContentPane().add(btnDelete);
+	
+		btnReload.setForeground(Color.BLACK);
+		btnReload.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				taulaEzabatu();
+				MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakBBDD.langileTaulaIrakurri();
+				columnas = new String [6];
+				taulaBete(columnas);
+			}
+		});
+		btnReload.setBounds(634, 62, 129, 23);
+		getContentPane().add(btnReload);
 		
-		asteriskoak1 = new JLabel("*********************************************************");
-		asteriskoak1.setHorizontalAlignment(SwingConstants.CENTER);
-		asteriskoak1.setForeground(Color.BLACK);
-		asteriskoak1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		asteriskoak1.setBounds(0, 13, 600, 66);
-		getContentPane().add(asteriskoak1);
+	}
 
+	public void taulaFormatua() {
+		table.setModel(t1);
+		t1.addColumn("NAN");
+		t1.addColumn("IZENA");
+		t1.addColumn("ABIZENAK");
+		t1.addColumn("ARDURA");
+		t1.addColumn("ARDURADUNA");
+		t1.addColumn("DEPARTAMENTUA");
+
+		taulaBete(columnas);
+	}
+
+	private void taulaBete(String[] columnas) {
+		for (int i = 0; i < MetodoakLeihoAldaketa.lista_langileak.size(); i++) {
+			columnas[0] = MetodoakLeihoAldaketa.lista_langileak.get(i).getNan();
+			columnas[1] = MetodoakLeihoAldaketa.lista_langileak.get(i).getIzena();
+			columnas[2] = MetodoakLeihoAldaketa.lista_langileak.get(i).getAbizenak();
+			columnas[3] = MetodoakLeihoAldaketa.lista_langileak.get(i).getArdura();
+			columnas[4] = MetodoakLeihoAldaketa.lista_langileak.get(i).getArduraduna();
+			columnas[5] = MetodoakLeihoAldaketa.lista_langileak.get(i).getDepartamentu_kod();
+			t1.addRow(columnas);
+		}
+	}
+	private void taulaEzabatu() {
+		while (t1.getRowCount() > 0) {
+			t1.removeRow(0);
+		}
+		
 	}
 }
