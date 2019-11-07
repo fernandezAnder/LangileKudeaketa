@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -58,6 +59,17 @@ public class Leiho4Txostenak extends JFrame {
 		btnIrten.setBounds(295, 492, 89, 23);
 		getContentPane().add(btnIrten);
 		
+		
+		btnFitxeroaSortu = new JButton("Fitxeroa sortu");
+		btnFitxeroaSortu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Fitxeroa ondo sortuta", "XML fitxeroa sortuta", 0);
+
+			}
+		});
+		btnFitxeroaSortu.setBounds(10, 492, 128, 23);
+		getContentPane().add(btnFitxeroaSortu);
+
 		
 	}
 	

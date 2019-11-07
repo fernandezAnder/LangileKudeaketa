@@ -24,7 +24,7 @@ public class Leiho2DeptKudeaketa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblDepartKod, lblIzena, lblKokapena , lblEraikuntzaZbk, lblIrakKop, lblDepartamentuDatuak, lblKokapena_1;
 	private JTextField txtIzena, txtEraikuntzaZbk, txtIrakKop;
-	private JButton btnKargatuFitxategia, btnEzeztatu, btnGorde;
+	private JButton btnKargatuFitxategia, btnEzeztatu, btnGorde, btnTxostenakSortu;
 	private JComboBox jcbKokapena, jcbDeptKod;
 
 	public Leiho2DeptKudeaketa() {
