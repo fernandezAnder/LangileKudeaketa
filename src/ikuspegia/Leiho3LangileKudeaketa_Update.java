@@ -132,7 +132,7 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 				String cadena = letraArduraduna + "";
 				if (txtArduraduna.getText().length() > 8 || !cadena.matches("[0-9A-Z]"))
 					e.consume(); // ez du godetzen
-				langile.setArduraduna(txtArduraduna+"");
+				langile.setArduraduna(txtArduraduna.getText()+"");
 
 			}
 		});
@@ -212,13 +212,13 @@ public class Leiho3LangileKudeaketa_Update extends JFrame {
 				else
 					lblDerrigorrezNan.setText("*");
 				
-				if (!txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}"))
+				if (!txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") || !txtArduraduna.getText().matches("") )
 					lblDerrigorrezArdurana.setText("* Lehenengo 8 karaktereak zenbakiak eta azkena letra larria");
 				else
 					lblDerrigorrezArdurana.setText("*");
 
 				if (txtNan.getText().matches("\\d{8}+[A-Z]{1}") && !txtIzena.getText().matches("[a-zA-Z]")
-						&& txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") && !txtAbizena.getText().matches("[a-zA-Z]"))
+						&& (txtArduraduna.getText().matches("\\d{8}+[A-Z]{1}") || txtArduraduna.getText().matches("") ) && !txtAbizena.getText().matches("[a-zA-Z]"))
 					kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
 			}
 		});

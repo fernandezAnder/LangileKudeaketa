@@ -131,14 +131,14 @@ public class DbKontsultak {
 		Connection konexioa = Konexioa.getKonexioa();
 		try {
 			s = konexioa.prepareStatement(
-					"UPDATE `langileak` SET `NAN`=?,`IZENA`=?,`ABIZENAK`=?,`ARDURA`=?,`ARDURADUNA`=?,`DEPARTAMENTUAK_DEPART_KOD`=? WHERE `NAN`= ?");
+					"UPDATE `langileak` SET `NAN`=?,`IZENA`=?,`ABIZENAK`=?,`ARDURA`=?,`ARDURADUNA`=?,`DEPARTAMENTUAK_DEPART_KOD`=? WHERE `NAN`= '"+langile.getNan()+"'");
 			s.setString(1, langile.getNan());
 			s.setString(2, langile.getIzena());
 			s.setString(3, langile.getAbizenak());
 			s.setString(4, langile.getArdura());
 			s.setString(5, langile.getArduraduna());
 			s.setString(6, langile.getDepartamentu_kod());
-			s.setString(7, langile.getNan());
+	
 
 			s.executeUpdate();
 			s.close(); // PREPAREDSTATEMENT itxi

@@ -83,13 +83,13 @@ public class Leiho3LangileKudeaketa_EzabatuAldatu extends JFrame {
 		plus.setForeground(Color.BLACK);
 		plus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean froga = false;
-				for (int i = 0; i < t1.getColumnCount(); i++) {
-					System.out.println(t1.getValueAt(0,i));
-					if (t1.getValueAt(t1.getRowCount()-1, i) == null)
-						froga = true;
-				}
-				if (!froga)
+//				boolean froga = false;
+//				for (int i = 0; i < t1.getColumnCount(); i++) {
+//					System.out.println(t1.getValueAt(0,i));
+//					if (t1.getValueAt(t1.getRowCount()-1, i) == null)
+//						froga = true;
+//				}
+//				if (!froga)
 					t1.addRow(constante);
 				
 			}
@@ -124,8 +124,8 @@ public class Leiho3LangileKudeaketa_EzabatuAldatu extends JFrame {
 						t1.getValueAt(table.getSelectedRow(), 3).toString(),
 						t1.getValueAt(table.getSelectedRow(), 4).toString(),
 						t1.getValueAt(table.getSelectedRow(), 5).toString());
-				kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
-				//kontrolatzailea.MetodoakLeihoAldaketa.hirugarrenLeihoaUpdate(langile);
+				//kontrolatzailea.MetodoakBBDD.langileTaulaAldatu(langile);
+				kontrolatzailea.MetodoakLeihoAldaketa.hirugarrenLeihoaUpdate(langile);
 			}
 		});
 		btnUpdate.setBounds(352, 409, 89, 23);
@@ -187,7 +187,9 @@ public class Leiho3LangileKudeaketa_EzabatuAldatu extends JFrame {
 	private void taulaEzabatu() {
 		while (t1.getRowCount() > 0) {
 			t1.removeRow(0);
+		
 		}
 		
 	}
+	
 }
