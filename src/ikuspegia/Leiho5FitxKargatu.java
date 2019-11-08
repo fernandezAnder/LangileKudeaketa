@@ -11,6 +11,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
@@ -69,6 +70,7 @@ public class Leiho5FitxKargatu extends JFrame {
 		getContentPane().add(lblRuta);
 
 		txtHelbidea = new JTextField();
+		txtHelbidea.setEnabled(false);
 		txtHelbidea.setBounds(101, 210, 422, 20);
 		getContentPane().add(txtHelbidea);
 		txtHelbidea.setColumns(10);
@@ -76,22 +78,21 @@ public class Leiho5FitxKargatu extends JFrame {
 		btnKargatu = new JButton("Kargatu");
 		btnKargatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// MIRAR
 				// ROCIO CASA --> D:\DAM2\AccesoADatos\git\LangileKudeaketa\LangileKudeaketa\src\fitxategiak\langileak.csv
 				// ANDER CLASE -->  C:\Users\admin1\git\LangileKudeaketa\src\fitxategiak\langileak.xml
 				if ("xml".equals(comboBox.getSelectedItem().toString())) {
 					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri
-							.irakurriLangileakXMLMet(txtHelbidea + "");
+							.irakurriLangileakXMLMet(fitxategia.getAbsolutePath() + "");
 					kontrolatzailea.MetodoakBBDD.multiLangileTaulaIdatzi();
 					
 				} else if ("csv".equals(comboBox.getSelectedItem().toString())) {
 					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri
-							.irakurriLangileakCSVMet(txtHelbidea + "");
+							.irakurriLangileakCSVMet(fitxategia.getAbsolutePath() + "");
 					kontrolatzailea.MetodoakBBDD.multiLangileTaulaIdatzi();
 					
 				} else if ("json".equals(comboBox.getSelectedItem().toString())) {
 					kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak = kontrolatzailea.MetodoakFitxIrakurri
-							.irakurriLangileakJSONMet(txtHelbidea + "");
+							.irakurriLangileakJSONMet(fitxategia.getAbsolutePath() + "");
 					kontrolatzailea.MetodoakBBDD.multiLangileTaulaIdatzi();
 					
 				} else {

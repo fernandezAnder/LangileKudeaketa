@@ -104,6 +104,7 @@ public class DbKontsultak {
 			//konexioa.close(); // DATUBASE konexioa itxi.
 
 		} catch (Exception e) {
+			
 			System.out.println(e.getMessage());
 		}
 

@@ -7,7 +7,7 @@ import eredua.Langilea;
 public class MetodoakFitxIrakurri {
 	
 	public static ArrayList<Langilea> irakurriLangileakXMLMet(String helbidea) {
-		System.out.println(helbidea);
+//D:\DAM2\AccesoADatos\git\LangileKudeaketa\LangileKudeaketa\src\fitxategiak\langileak.csv
 		return eredua.FitxKudeaketaLangilea.irakurriLangileakXML(helbidea);
 	}
 	public static ArrayList<Langilea> irakurriLangileakCSVMet(String helbidea) {

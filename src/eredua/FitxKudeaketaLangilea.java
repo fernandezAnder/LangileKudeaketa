@@ -44,7 +44,6 @@ public class FitxKudeaketaLangilea {
 			fitxeroa = new FileReader(helbidea);
 			br = new BufferedReader(fitxeroa);
 			// Langilearen bariableak
-
 			String katea[];
 			String nan = "";
 			String izena = "";
@@ -73,10 +72,10 @@ public class FitxKudeaketaLangilea {
 				br.close();
 				fitxeroa.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Errorea", "Errorea", 0);
 			}
 		} catch (FileNotFoundException e1) {
-			JOptionPane.showConfirmDialog(null, "Ez da fitxeroa aurkitzen", "Bai-ra eman", 0);
+			JOptionPane.showMessageDialog(null, "Ez da fitxeroa aurkitzen", "ERROREA", 0);
 		}
 
 		return lista_langileak;
@@ -126,7 +125,6 @@ public class FitxKudeaketaLangilea {
 				doc = dBuilder.parse(helbidea);
 				doc.getDocumentElement().normalize();
 				NodeList lista = doc.getElementsByTagName("LANGILEAK");
-
 				for (int temp = 0; temp < lista.getLength(); temp++) {
 					Node nNode = lista.item(temp);
 					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -143,14 +141,17 @@ public class FitxKudeaketaLangilea {
 					}
 				}
 			} catch (SAXException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Ez duzu fitxero zuzena sartu", "ERROREA", 0);
 			} catch (IOException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "ERROREA", "ERROREA", 0);
+			}catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "ERROREA", "ERROREA", 0);
 			}
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Errorea", "ERROREA", 0);
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROREA", "ERROREA", 0);
 		}
-		System.out.println();
 		return lista_langilea;
 	}
 
@@ -267,7 +268,6 @@ public class FitxKudeaketaLangilea {
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
-		System.out.println();
 		return lista_langilea;
 	}
 
@@ -280,7 +280,9 @@ public class FitxKudeaketaLangilea {
 		try {
 			builder = factory.newDocumentBuilder();
 		} catch (ParserConfigurationException e1) {
-			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Ez duzu fitxero zuzena sartu", "konbertsio errorea", 0);
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROREA", "ERROREA", 0);
 		}
 		DOMImplementation implementation = builder.getDOMImplementation();
 
@@ -327,7 +329,7 @@ public class FitxKudeaketaLangilea {
 			}
 
 		} catch (Exception e) {
-
+			JOptionPane.showMessageDialog(null, "Errorea", "konbertsio errorea", 0);
 		}
 
 		ficheroXML.normalizeDocument();
@@ -340,9 +342,12 @@ public class FitxKudeaketaLangilea {
 			transformer.transform(source, result);
 			idatzita = 1;
 		} catch (TransformerException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Errorea fitxeroa transformatzerakoan",  "konbertsio errorea", 0);
+
 		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Errorea  fitxeroa transformatzerakoan", "konbertsio errorea", 0);
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROREA", "ERROREA", 0);
 		}
 
 
