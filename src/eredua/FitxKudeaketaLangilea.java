@@ -30,6 +30,13 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
+
+/*import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+*/
+
 import jdk.nashorn.internal.parser.JSONParser;
 
 public class FitxKudeaketaLangilea {
@@ -232,7 +239,22 @@ public class FitxKudeaketaLangilea {
 	// .json an dauden lerroak arraylist batean sartu
 	public static ArrayList<Langilea> irakurriLangileakJSON(String helbidea) {
 		ArrayList<Langilea> lista_langilea = new ArrayList<Langilea>();
-		File fitxeroa = new File(helbidea);
+
+	/*	JSONParser jsonParser = new JSONParser();
+
+		try (FileReader reader = new FileReader(helbidea)) {
+			Object obj = jsonParser.parse(reader);
+			JSONArray employeeList = (JSONArray) obj;
+			employeeList.forEach(emp -> parseOharrakObject((JSONObject) emp));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+	/*	File fitxeroa = new File(helbidea);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
 		Document doc = null;
@@ -267,10 +289,27 @@ public class FitxKudeaketaLangilea {
 			}
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
-		}
+		}*/
+		
+		
+		
 		return lista_langilea;
 	}
+/*
+	private static void parseOharrakObject(JSONObject employee) {
+		JSONObject oharraObject = (JSONObject) employee.get("LANGILEAK");
 
+		String nan = (String) oharraObject.get("NAN");
+		String izena = (String) oharraObject.get("IZENA");
+		String abizenak = (String) oharraObject.get("ABIZENAK");
+		String ardura = (String) oharraObject.get("ARDURA");
+		String arduraduna = (String) oharraObject.get("ARDURADUNA");
+		String depart_kod = (String) oharraObject.get("DEPARTAMENTUAK_DEPART_KOD");
+
+		Langilea langilea = new Langilea(nan, izena, abizenak, ardura, arduraduna, depart_kod);
+		kontrolatzailea.MetodoakLeihoAldaketa.lista_langileak.add(langilea);
+	}*/
+	
 	// .xml aren amaieran idazten du.
 	public static int idatziLangileak(ArrayList<Langilea> lista_langileak,String helbidea) {
 		int idatzita = 0;
